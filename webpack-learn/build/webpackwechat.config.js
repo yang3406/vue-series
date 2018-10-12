@@ -108,21 +108,18 @@ module.exports = [{
         fallback: { loader: 'style-loader' },
         use: {
           loader: 'css-loader',
-          options: { minimize: true }
+          options: { minimize: true, url: false, import: false }  //禁用url 以免打包失败
         }
       })
-    },]
+    }, {
+      test: /\.(png|jpg|gif)$/,
+      use: [{
+        loader: 'url-loader'
+      }]
+    }
+    ]
   },
   plugins: [
-    //压缩单独的css  这里主要要npm install extract-text-webpack-plugin@next --save-dev
-    new ExtractTextPlugin({
-      filename: '[name].css',
-      /* filename: (getPath) => {
-        console.log("999999999999999");
-        return getPath('css/[name].css').replace('css/js', 'css');
-      }, */
-      allChunks: false,
-    }),
     // 用于优化css文件
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /\.css$/g,
@@ -137,6 +134,16 @@ module.exports = [{
       },
       canPrint: true,
     }),
+    //压缩单独的css  这里主要要npm install extract-text-webpack-plugin@next --save-dev
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      /* filename: (getPath) => {
+        console.log("999999999999999");
+        return getPath('css/[name].css').replace('css/js', 'css');
+      }, */
+      allChunks: false,
+    }),
+
   ]
 }
 ]
