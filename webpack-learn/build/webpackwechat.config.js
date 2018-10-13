@@ -9,9 +9,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //只支持webpack4 该插件用于将css提取到单独的文件 为每个包含css的JS文件创建一个css文件
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //css压缩
-module.exports = {
-  mode: 'development', // production  webpack会根据mode进行对Js打包，development压缩，production下面自动压缩
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //对css优化
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); //css优化话 对css打包 不会内嵌到js bundle中
+
+module.exports = [{
+  mode: 'production', // production  webpack会根据mode进行对Js打包，development压缩，production下面自动压缩
   devServer: {  //配置webpack-dev-server  要全局安装才生效 
     contentBase: './dist',//默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器 
     port: '8383',//监听端口
@@ -42,19 +44,35 @@ module.exports = {
         ]
       }
    */
-      {
-        test: '/\.css$/',
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-        }, 'css-loader']
-      }
+      /* {
+        test: '/\.css/',
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+        ],
+        include: [
+          path.resolve(__dirname)
+        ]
+      }, */
+      /* {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: { loader: 'style-loader' },
+          //publicPath: '../src',
+          use: {
+            loader: 'css-loader',
+            options: { minimize: true }
+          }
+        })
+      }, */
     ]
   },
   plugins: [
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, '../src/'),  //从哪里复制
       to: path.resolve(__dirname, '../dist/src'),  //复制到哪里
-      ignore: ['clean.css']
+      ignore: ['*.css']
       //ignore: ['/!\.min\.js$/', '/!\.min\.css$/']   //复制以min.js和min.css结尾的文件 没生效
     }]),
     new CleanWebpackPlugin(
@@ -66,10 +84,42 @@ module.exports = {
         exclude: ['test.html']  //排除他不删除
       }
     ),
-    new MiniCssExtractPlugin({ //提取html中css代码到单独文件  http://wangweilin.net/static/pages/npm_minicssextractplugin.html
-      filename: "[name].css",
-
-    }),
+    /* new MiniCssExtractPlugin({ //提取html中css代码到单独文件  http://wangweilin.net/static/pages/npm_minicssextractplugin.html
+      filename: "../dist/src/min.css",
+      chunkFilename: "[id].[hash].css",
+    }), */
+    /* new HtmlWebpackPlugin({ //压缩html
+      minify: {
+        collapseWhitespace: true //折叠空白区域 也就是压缩代码
+      },
+    }) */
+  ],
+},
+{
+  entry: utils.cssentries(),
+  output: {
+    filename: "[name].css",            //文件名称
+    path: path.resolve(__dirname, '../dist'), //文件出口
+  },
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: { loader: 'style-loader' },
+        use: {
+          loader: 'css-loader',
+          options: { minimize: true, url: false, import: false }  //禁用url 以免打包失败
+        }
+      })
+    }, {
+      test: /\.(png|jpg|gif)$/,
+      use: [{
+        loader: 'url-loader'
+      }]
+    }
+    ]
+  },
+  plugins: [
     // 用于优化css文件
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /\.css$/g,
@@ -82,14 +132,19 @@ module.exports = {
           removeAll: true // 移除注释
         }
       },
-      canPrint: true
+      canPrint: true,
+    }),
+    //压缩单独的css  这里主要要npm install extract-text-webpack-plugin@next --save-dev
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      /* filename: (getPath) => {
+        console.log("999999999999999");
+        return getPath('css/[name].css').replace('css/js', 'css');
+      }, */
+      allChunks: false,
     }),
 
-    new HtmlWebpackPlugin({ //压缩html
-      minify: {
-        collapseWhitespace: true //折叠空白区域 也就是压缩代码
-      },
-    })
   ]
 }
+]
 //UglifyJsPlugin插件
