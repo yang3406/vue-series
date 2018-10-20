@@ -20,9 +20,16 @@ exports.cssLoaders = function (options) {
     }
   };
 
+  var px2remLoader = {
+    loader: 'px2rem-loader',
+    options: {
+      remUnit: 54 //设置1rem为75px 对应css里面的75px = 1rem 然后 1rem = 根元素的font-size; 750px = 10rem
+    }
+  }
+
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
-    var loaders = [cssLoader];
+  function generateLoaders(loader, loaderOptions) {
+    var loaders = [cssLoader, px2remLoader];
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
@@ -37,7 +44,7 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        publicPath:'../../',
+        publicPath: '../../',
         fallback: 'vue-style-loader'
       });
     } else {
