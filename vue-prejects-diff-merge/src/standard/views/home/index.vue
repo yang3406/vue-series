@@ -24,6 +24,5 @@ export default {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  height: 60vh;
 }
 </style>

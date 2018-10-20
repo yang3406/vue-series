@@ -13,11 +13,12 @@ export default {
 </script>
 
 <style >
+/* @import url('./common/css/reset.scss');
+@import url('./common/css/common.scss');
+@import url('./common/css/mixin.scss'); */
 #app {
   width: 100%;
   height: 100%;
-  min-width: 1280px;
-  overflow-y: hidden;
 }
 
 .fade-enter-active,
