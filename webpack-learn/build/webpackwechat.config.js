@@ -15,11 +15,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin'); //css优化话
 module.exports = [{
   mode: 'production', // production  webpack会根据mode进行对Js打包，development压缩，production下面自动压缩
   devServer: {  //配置webpack-dev-server  要全局安装才生效 
-    contentBase: './dist',//默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器 
+    //contentBase: './dist',//默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器 
     port: '8383',//监听端口
-    inline: true,//设置为true，当源文件改变的时候会自动刷新
+    contentBase: path.resolve(__dirname, '../src'),  //指向压缩前的路径
+    inline: false,//设置为true，当源文件改变的时候会自动刷新 用于单页面开发
     historyApiFallback: true,//在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
-    hot: true//允许热加载
+    hot: true,//允许热加载,
+    open: true,
   },
   entry: utils.entries(),
   output: {
@@ -66,6 +68,15 @@ module.exports = [{
           }
         })
       }, */
+      {
+        test: /\.(png|jpg|gif)$/,   //处理图片  图片地址会按原地址返回
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          }
+        ]
+      }
     ]
   },
   plugins: [

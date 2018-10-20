@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildwechat": "webpack --mode production --config  ./build/webpackwechat.config.js"
+    "buildwechat": "webpack --mode production --config  ./build/webpackwechat.config.js",
+    "start": "webpack-dev-server --mode development --config  ./build/webpackwechat.config.js"
   },
   "author": "",
   "license": "ISC",
