@@ -5,12 +5,12 @@
   "author": "liaoyinglong <vigossliao@gmail.com>",
   "private": true,
   "scripts": {
-    "xinjiang": "node build/dev-server.js src=xinjiang",
-    "xinjiangdist": "node build/build.js src=xinjiang",
+    "xinjiang": "node build/dev-server.js src=wulumuqi",
+    "xinjiangdist": "node build/build.js src=wulumuqi",
     "beijing": "node build/dev-server.js src=beijing",
     "beijingdist": "node build/build.js src=beijing",
-    "standard": "node build/dev-server.js src=standard",
-    "standarddist": "node build/build.js src=standard",
+    "dev": "node build/dev-server.js src=standard",
+    "devlist": "node build/build.js src=standard",
     "dll": "node build/build-dll.js"
   },
   "dependencies": {
