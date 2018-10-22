@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="test">测试sass能不能用</div>
+  <div class="test">测试sass能不能用wwwww</div>
 
 </template>
 
