@@ -15,8 +15,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import '../../common/css/mixin.scss';
-
 .test {
   @include sc(75px, red);
 }

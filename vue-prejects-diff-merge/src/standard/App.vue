@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <transition name="fade" mode="out-in">
+    <transition name="fade" mode="out-in" v-if='$route.meta.keepAlive'>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
+    </transition>
+    <transition name='fade' v-if="!$route.meta.keepAlive">
       <router-view/>
     </transition>
   </div>
@@ -13,9 +18,6 @@ export default {
 </script>
 
 <style >
-/* @import url('./common/css/reset.scss');
-@import url('./common/css/common.scss');
-@import url('./common/css/mixin.scss'); */
 #app {
   width: 100%;
   height: 100%;
