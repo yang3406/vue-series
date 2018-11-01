@@ -40,8 +40,15 @@ export default {
 </script>
 <style lang='scss' scoped>
 @import '~@standard/common/css/multi.switch.scss';
+
+$circleBorderColor: #c95e63;
+$circleBackground: #e99e98;
+$circleOutW: 45px;
+$circleOutH: 45px;
+$cirecleDistance: 10px;
+
 .car-message-list ul {
-  margin: 2% 5%;
+  margin: 2% 8%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -53,16 +60,16 @@ export default {
   }
   .circle-out {
     position: relative;
-    border: 2px solid #c95e63;
-    background: #e99e98;
-    @include wh(60px, 60px);
+    border: 2px solid $circleBorderColor;
+    background: $circleBackground;
+    @include wh($circleOutW, $circleOutH);
     @include borderRadius(50%);
     .circle-in {
       position: absolute;
-      @include wh(50px, 50px);
+      @include wh(#{$circleOutW}-#{$cirecleDistance}, #{$circleOutH}-#{$cirecleDistance});
       @include borderRadius(50%);
       background-color: #fff;
-      border: 2px solid #c95e63;
+      border: 2px solid $circleBorderColor;
       text-align: center;
       margin: auto;
       left: 0;
@@ -75,6 +82,7 @@ export default {
       }
     }
   }
+  //控制 switch 大小
   /* .mui-switch {
     @include wh(45px, 25px);
     @include borderRadius($radius);

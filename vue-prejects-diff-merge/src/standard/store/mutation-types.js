@@ -1,0 +1,3 @@
+
+export const CHANGE_SHOWBAR = "CHANGE_SHOWBAR";
+export const CHANGE_MEBINFO = "CHANGE_MEBINFO";

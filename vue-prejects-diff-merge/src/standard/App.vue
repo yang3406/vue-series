@@ -5,7 +5,7 @@
         <router-view/>
       </keep-alive>
     </transition>
-    <transition name='fade' v-if="!$route.meta.keepAlive">
+    <transition name='fade' v-else>
       <router-view/>
     </transition>
   </div>

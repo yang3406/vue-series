@@ -12,8 +12,7 @@
 </template>
 
 <script>
-import Swiper from 'swiper';
-
+import Swiper from '@standard/plugins/swiper/swiper.min.js';
 export default {
   props: {
     swipeid: {
@@ -97,7 +96,7 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-@import '~@standard/common/css/swiper.min.css';
+@import '~@standard/plugins/swiper/swiper.min.css';
 .header .swiper-container {
   img {
     @include wh(100%, 400px);

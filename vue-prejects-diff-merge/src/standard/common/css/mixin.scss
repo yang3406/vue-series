@@ -1,4 +1,7 @@
 
+/* 登录注册输入框闪动条 选中下拉线的颜色 */
+$loginbgColor:#508cee;
+
 /* 背景图片和大小 */
 @mixin bis($url){
   background-image: url($url);
@@ -60,4 +63,33 @@
 @mixin flexcontent($type : space-between){
   display: flex;
   justify-content: $type;
+}
+
+/* 设置input textarea placeholder的样式 */
+@mixin placeholder($size:28px,$color:#999){
+  ::-webkit-input-placeholder, { /* WebKit, Blink, Edge */
+    font-size: $size;
+    color:$color;
+    
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: $size;
+    color:$color;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: $size;
+    color:$color;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: $size;
+    color:$color;
+  }
+}
+/* 改变输入框 选中后 闪动光标颜色 */
+@mixin inputcaret($color:auto){
+  caret-color: $color;
+  //color: $color; /* 光标颜色 */
+  /* @supports (caret-color: $color) {
+    caret-color: $color;
+  } */
 }

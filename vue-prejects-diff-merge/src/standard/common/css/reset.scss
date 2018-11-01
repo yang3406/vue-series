@@ -14,15 +14,33 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video,textarea,input,select {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+ /*  font: inherit; */
+  font-weight: normal;
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   vertical-align: baseline;
   box-sizing: border-box;
+  list-style: none;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
+ -webkit-tap-highlight-color:transparent;
+  -webkit-font-smoothing: antialiased;
+  &:hover{
+    outline: none;
 }
+}
+
+/* 去掉form表单中 在google自带的黄背景色 */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+ /*  -webkit-text-fill-color: #333; */
+ }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -48,9 +66,4 @@ table {
 }
 body{
   font: 12px/1.5 Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif;
-}
-
-body,html{
-  width: 100%;
-  height:100%;
 }

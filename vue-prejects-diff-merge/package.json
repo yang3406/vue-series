@@ -13,12 +13,15 @@
     "devlist": "node build/build.js src=standard",
     "dll": "node build/build-dll.js"
   },
+  "eslintIgnore": [
+    "./src/standard/plugins"
+  ],
   "dependencies": {
     "@types/node": "^9.4.7",
     "axios": "^0.18.0",
     "fastclick": "^1.0.6",
     "lib-flexible": "^0.3.2",
-    "swiper": "^4.4.1",
+    "mint-ui": "^2.2.13",
     "vue": "^2.5.0",
     "vue-router": "^3.0.0",
     "vuex": "^3.0.1"

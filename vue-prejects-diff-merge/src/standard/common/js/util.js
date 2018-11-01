@@ -3,6 +3,7 @@
  * @Date:   2018/10/24
  * @功能：公用方法
  */
+import config from './config';
 
 export const isNullorEmpty = (str) => {
   if ((str == null || str == "null" || str == "" || str == " " || str == undefined || str == "undefined") && (str != 0 || str != "0"))
@@ -11,29 +12,45 @@ export const isNullorEmpty = (str) => {
     return false;
 };
 
-//localStorage 相关操作
-export const setStroe = (name, content) => {
+//sessionStorage 相关操作
+export const setSessionStroe = (name, content) => {
   if (!name) return;
   if (typeof content !== "string") {
     content = JSON.stringify(content);
   } else {
     content = escape(content);
   }
-  window.localStorage.setItem(name, content); //设置缓存
+  window.sessionStorage.setItem(config.appId + name, content); //设置缓存
 };
 
-export const getStore = name => { //读取缓存
+export const getSessionStroe = name => { //读取缓存
   if (!name) return;
-  window.localStorage.getItem(name);
+  window.sessionStorage.getItem(config.appId + name);
 };
 
-export const removeStore = name => { //移除某个缓存
+export const removeSessionStore = name => {
   if (!name) return;
-  window.localStorage.removeItem(name);
+  window.sessionStorage.removeItem(config.appId + name);
+};
+//localStorage 相关操作
+export const setLocalStroe = (name, content) => {
+  if (!name) return;
+  if (typeof content !== "string") {
+    content = JSON.stringify(content);
+  } else {
+    content = escape(content);
+  }
+  window.localStorage.setItem(config.appId + name, content); //设置缓存
 };
 
-export const clearStore = () => { //清除所有缓存
-  window.localStorage.clear();
+export const getLocalStroe = name => { //读取缓存
+  if (!name) return;
+  window.localStorage.getItem(config.appId + name);
+};
+
+export const removeLocalStroe = name => {
+  if (!name) return;
+  window.localStorage.removeItem(config.appId + name);
 };
 
 //去除所有的空格

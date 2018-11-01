@@ -1,0 +1,22 @@
+
+.tab-menu-area{
+  display: flex;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  .link_to_tab{
+    width: 25%;
+    margin-bottom: 4px;
+    @include flexcontent(center);
+    figure{
+      img{
+        margin-bottom: 1px;
+        @include wh(80px, 80px);
+      }
+      figcaption{
+        text-align: center;
+        @include sc(16px, #666);
+      }
+    }
+  }
+  
+}

@@ -34,6 +34,7 @@ module.exports = {
       vue$: 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       '@standard': path.resolve(__dirname, '../src/standard'),
+      '@img': path.resolve(__dirname, '../src/standard/common/img/default'),
     },
   },
   externals: {
