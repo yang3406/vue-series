@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
   to.meta.isShowBar ? store.commit(CHANGE_SHOWBAR, true) : store.commit(CHANGE_SHOWBAR, false);
 
   //避免陷入死循环
-  if (to.path === "/login") {
+  if (to.path.startsWith("/useraccount")) {
     next();
     return;
   };
@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
     if (!store.getters.getIsLogin) {
       if (to.matched.some(m => m.meta.isAuth)) {
         //未登录 且需要登录权限
-        next('/login');
+        next('/useraccount/:login');
       } else {
         next();
       }

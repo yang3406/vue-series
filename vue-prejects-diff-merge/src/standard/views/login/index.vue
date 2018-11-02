@@ -1,77 +1,82 @@
 <!-- 登录页面 2018.10.30 -->
 <template>
-  <div class="loginContainer">
-    <header class="clear">
-      <div class="left header-wrap">
-        <img :src="[isLoginOperate ? iconcross : iconback]" @click="isLoginOperate ? $router.go(-1) : toggleTab(true)">
-      </div>
-      <div v-show="isLoginOperate" class="right header-wrap ">
-        <span class="register_word" @click="toggleTab(false)">注册</span>
-      </div>
-    </header>
+  <div>
+    <div class="loginContainer">
+      <header class="clear">
+        <div class="left header-wrap">
+          <img :src="[loginOperate ? iconcross : iconback]" @click="loginOperate ? $router.go(-1) : toggleTab('login')">
+        </div>
+        <div v-show="loginOperate" class="right header-wrap ">
+          <span class="register_word" @click="toggleTab('register')">注册</span>
+        </div>
+      </header>
+      <p>{{ $route.params.id}}</p>
+      <nav>
+        <h1 v-show="loginOperate" class="nav-title">欢迎登录</h1>
+        <h1 v-show="!loginOperate" class="nav-title">手机号注册</h1>
+      </nav>
 
-    <nav>
-      <h1 v-show="isLoginOperate" class="nav-title">欢迎登录</h1>
-      <h1 v-show="!isLoginOperate" class="nav-title">手机号注册</h1>
-    </nav>
+      <form class="loginform" v-if="loginOperate" key="loginform">
+        <section class="input_container">
+          <input placeholder="手机号" type="text" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="loginPhoneNumber">
+          <img class="clear_icon" :src="iconclear" @click="_clearData('loginPhoneNumber')"></img>
+        </section>
+        <section class="input_container">
+          <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="loginUserPassword">
+          <img class="clear_icon" :src="iconclear" @click="_clearData('loginUserPassword')"></img>
+        </section>
+      </form>
 
-    <form class="loginform" v-if="isLoginOperate" key="loginform">
-      <section class="input_container">
-        <input placeholder="手机号" type="text" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="loginPhoneNumber">
-        <img class="clear_icon" :src="iconclear" @click="_clearData('loginPhoneNumber')"></img>
-      </section>
-      <section class="input_container">
-        <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="loginUserPassword">
-        <img class="clear_icon" :src="iconclear" @click="_clearData('loginUserPassword')"></img>
-      </section>
-    </form>
+      <form class="loginform" v-else key="registerform">
+        <section class="input_container">
+          <input placeholder="手机号" type="text" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="phoneNumber">
+          <img class="clear_icon" :src="iconclear" @click="_clearData('phoneNumber')"></img>
+        </section>
+        <section class="input_container">
+          <input placeholder="验证码" type="text" @keyup="_checkValue('verfyCode')" v-model="verfyCode">
+          <span :class="['verfyCode',isregpho?'activeVerfycode':'']" @click="_getCode()">{{verfyCodeTips}}</span>
+        </section>
+        <section class="input_container">
+          <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="userPassword">
+          <img class="clear_icon" :src="iconclear" @click="_clearData('userPassword')"></img>
+        </section>
+      </form>
 
-    <form class="loginform" v-else key="registerform">
-      <section class="input_container">
-        <input placeholder="手机号" type="text" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="phoneNumber">
-        <img class="clear_icon" :src="iconclear" @click="_clearData('phoneNumber')"></img>
+      <section v-if="loginOperate">
+        <div :class="['loginbutton',isbtn?'actbtn':'']" @click="_loginSubmit">登 录</div>
+        <section class="footer_section">
+          <router-link to='/forget' class="footer_word">忘记密码?</router-link>
+        </section>
       </section>
-      <section class="input_container">
-        <input placeholder="验证码" type="text" @keyup="_checkValue('verfyCode')" v-model="verfyCode">
-        <span class="verfyCode" @click="_getCode()">{{verfyCodeTips}}</span>
+      <section v-else="loginOperate">
+        <div :class="['loginbutton',isRegbtn?'actbtn':'']" @click="_regSubmit">注 册</div>
+        <section class="footer_section">
+          <span class="footer_word">注册表示你已同意</span>
+          <span @click="$router.push('/userprotocol')" class="protocol_word">《用户使用协议》</span>
+        </section>
       </section>
-      <section class="input_container">
-        <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="userPassword">
-        <img class="clear_icon" :src="iconclear" @click="_clearData('userPassword')"></img>
-      </section>
-    </form>
-
-    <section v-if="isLoginOperate">
-      <div :class="['loginbutton',isbtn?'actbtn':'']" @click="_loginSubmit">登录</div>
-    </section>
-    <section v-else="isLoginOperate">
-      <div :class="['loginbutton',isRegbtn?'actbtn':'']" @click="_regSubmit">注册</div>
-    </section>
-    <section class="forget_section" v-if="isLoginOperate">
-      <router-link to='/forget' class="to_forget">忘记密码</router-link>
-    </section>
-    <section v-else>
-      <div>注册表示你已同意
-        <router-link to="/userprotocol">
-          <<用户使用协议>>
-        </router-link>
-      </div>
-    </section>
-    <alertTip v-show="showAlertTip" @closeTip="_closeTip" :alertText="alertText" :alertType="alertType"></alertTip>
+      <alertTip v-show="showAlertTip" @closeTip="_closeTip" :alertText="alertText" :alertType="alertType"></alertTip>
+    </div>
   </div>
 </template>
 
 <script>
-import iconcross from '@img/public_announcement_cross_gray@3x.png';
+import iconcross from '@img/public_crooss@2x.png';
 import iconback from '@img/public_return_ic.png';
 import iconclear from '@img/clear.png';
 import alertTip from '@standard/components/common/alertTip.vue';
 import { isNullorEmpty } from '@standard/common/js/util.js';
 export default {
   name: 'login',
+  watch: {
+    $route(to, from) {
+      this.loginOperate = this.$route.params.id;
+      alert(this.loginOperate + '111');
+    },
+  },
   data() {
     return {
-      isLoginOperate: true, //操作页面 true登录操作 false注册操作
+      loginOperate: '', //操作页面 login登录 register注册 forget忘记密码
       loginPhoneNumber: '', //登录用户名
       loginUserPassword: '', //登录密码
       phoneNumber: '', //手机号
@@ -102,14 +107,13 @@ export default {
     alertTip: alertTip,
   },
   /* 
-  computed: {},
+  computed: {}, */
 
-  mounted: {}, */
+  mounted() {},
 
   methods: {
     //清除数据
     _clearData(name) {
-      console.log(this[name]);
       this[name] = '';
       this._checkValue(name);
     },
@@ -124,19 +128,17 @@ export default {
     //输入框验证
     _checkValue(type) {
       //登录页面
-      if (this.isLoginOperate) {
+      if (this.loginOperate) {
         this.isbtn = false;
         switch (type) {
           case 'phoneNumber':
-            if (this.loginPhoneNumber.length == 11) {
-              if (!/^1\d{10}$/.test(this.loginPhoneNumber)) {
-                //验证不通过
-                this.isloginpho = false;
-              } else {
-                //验证通过
-                this.isloginpho = true;
-                this._controlLoginButton();
-              }
+            if (!/^1\d{10}$/.test(this.loginPhoneNumber)) {
+              //验证不通过
+              this.isloginpho = false;
+            } else {
+              //验证通过
+              this.isloginpho = true;
+              this._controlLoginButton();
             }
             break;
           case 'userPassword':
@@ -154,15 +156,13 @@ export default {
         this.isRegbtn = false;
         switch (type) {
           case 'phoneNumber':
-            if (this.phoneNumber.length == 11) {
-              if (!/^1\d{10}$/.test(this.phoneNumber)) {
-                //验证不通过
-                this.isregpho = false;
-              } else {
-                //验证通过
-                this.isregpho = true;
-                this._controlRegButton();
-              }
+            if (!/^1\d{10}$/.test(this.phoneNumber)) {
+              //验证不通过
+              this.isregpho = false;
+            } else {
+              //验证通过
+              this.isregpho = true;
+              this._controlRegButton();
             }
             break;
           //验证码
@@ -175,6 +175,8 @@ export default {
               } else {
                 this.isregverfycode = false;
               }
+            } else {
+              this.isregverfycode = false;
             }
             break;
           case 'userPassword':
@@ -236,8 +238,8 @@ export default {
     },
     _regSubmit() {},
     //切换登录注册tab
-    toggleTab(boolean) {
-      this.isLoginOperate = boolean;
+    toggleTab(operate) {
+      this.$router.push('/useraccount/:' + operate);
     },
     _closeTip() {
       this.showAlertTip = false;
@@ -246,95 +248,5 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-$sizeColor: #444;
-.loginContainer {
-  margin: 20px 70px;
-  .header-wrap {
-    position: relative;
-    @include wh(auto, 48px);
-    vertical-align: middle;
-    img {
-      @include wh(32px, 32px);
-      @include centerY();
-    }
-    .register_word {
-      @include sc(32px, $sizeColor);
-    }
-  }
-  .nav-title {
-    margin-top: 106px;
-    @include sc(60px, $sizeColor);
-  }
-  .loginform {
-    margin-top: 60px;
-    .input_container {
-      position: relative;
-      margin-bottom: 4px; /*no*/
-      @include placeholder(28px, #999);
-      input {
-        @include sc(34px, $sizeColor);
-        padding: 20px 2px;
-        border-bottom-color: #ddd;
-        border-bottom-width: 1px; /*no*/
-        border-bottom-style: solid;
-        width: 100%;
-        &:active,
-        &:focus {
-          @include inputcaret($loginbgColor);
-          //@include inputcaret(red);
-          border-bottom-color: $loginbgColor;
-          border-bottom-width: 2px; /*no*/
-        }
-        &:active + .verfyCode,
-        &:focus + .verfyCode {
-          color: $loginbgColor;
-        }
-      }
-      /* 设置输入框是否显示清除按钮 */
-      .clear_icon {
-        display: none;
-        @include centerY();
-        @include wh(28px, 28px);
-        right: 4px;
-      }
-      /* 验证码 */
-      .verfyCode {
-        @include centerY();
-        @include sc(34px, #9999);
-        right: 4px;
-      }
-      .show_clear_icon {
-        &::-ms-clear {
-          display: none;
-        }
-        &:focus:valid + .clear_icon {
-          display: inline-block;
-        }
-      }
-    }
-  }
-  .loginbutton {
-    text-align: center;
-    vertical-align: middle;
-    margin-top: 88px;
-    width: 100%;
-    background-color: #d0d3d4;
-    height: 88px;
-    line-height: 88px;
-    @include sc(36px, #fff);
-    @include borderRadius(44px);
-  }
-  .actbtn {
-    background-color: #508cee;
-  }
-  .forget_section {
-    text-align: center;
-    .to_forget {
-      display: inline-block;
-      margin-top: 56px;
-      text-align: center;
-      @include sc(34px, #9999);
-    }
-  }
-}
+@import './index.scss';
 </style>

@@ -30,13 +30,7 @@ textarea { -webkit-appearance: none;}
 
 html{
     height: 100%;
-    width: 100%;
     background-color: #fff;
-}
-
-body{
-  @extend html;
-  overflow-y: hidden; 
 }
 
 .clear:after{
