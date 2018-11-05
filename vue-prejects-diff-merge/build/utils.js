@@ -23,7 +23,7 @@ exports.cssLoaders = function (options) {
   var px2remLoader = {
     loader: 'px2rem-loader',
     options: {
-      remUnit: 81 //设置1rem为81px 对应css里面的81px = 1rem 然后 1rem = 根元素的font-size; 
+      remUnit: 81 //设置1rem为81px 对应css里面的81px = 1rem 然后 1rem = 根元素的font-size:54px  因为原型用的是*2x 设置为81px 和产品原型差不多  
     }
   }
 

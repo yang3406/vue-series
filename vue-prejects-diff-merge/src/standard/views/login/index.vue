@@ -6,55 +6,58 @@
         <div class="left header-wrap">
           <img :src="[loginOperate ? iconcross : iconback]" @click="loginOperate ? $router.go(-1) : toggleTab('login')">
         </div>
-        <div v-show="loginOperate" class="right header-wrap ">
+        <div v-show="$route.params.id == 'login'" class="right header-wrap ">
           <span class="register_word" @click="toggleTab('register')">注册</span>
         </div>
       </header>
       <p>{{ $route.params.id}}</p>
-      <nav>
-        <h1 v-show="loginOperate" class="nav-title">欢迎登录</h1>
-        <h1 v-show="!loginOperate" class="nav-title">手机号注册</h1>
-      </nav>
 
-      <form class="loginform" v-if="loginOperate" key="loginform">
-        <section class="input_container">
-          <input placeholder="手机号" type="text" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="loginPhoneNumber">
-          <img class="clear_icon" :src="iconclear" @click="_clearData('loginPhoneNumber')"></img>
+      <div class="login_area" v-show="$route.params.id == 'login'">
+        <nav>
+          <h1 class="nav-title">欢迎登录</h1>
+        </nav>
+        <form class="loginform" key="loginform">
+          <section class="input_container">
+            <input placeholder="手机号" type="text" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="loginPhoneNumber">
+            <img class="clear_icon" :src="iconclear" @click="_clearData('loginPhoneNumber')"/>
+          </section>
+          <section class="input_container">
+            <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="loginUserPassword">
+            <img class="clear_icon" :src="iconclear" @click="_clearData('loginUserPassword')"/>>
+          </section>
+        </form>
+        <section>
+          <div :class="['loginbutton',isbtn?'actbtn':'']" @click="_loginSubmit">登 录</div>
+          <section class="footer_section">
+            <router-link to='/forget' class="footer_word">忘记密码?</router-link>
+          </section>
         </section>
-        <section class="input_container">
-          <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="loginUserPassword">
-          <img class="clear_icon" :src="iconclear" @click="_clearData('loginUserPassword')"></img>
-        </section>
-      </form>
+      </div>
 
-      <form class="loginform" v-else key="registerform">
-        <section class="input_container">
-          <input placeholder="手机号" type="text" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="phoneNumber">
-          <img class="clear_icon" :src="iconclear" @click="_clearData('phoneNumber')"></img>
+      <div class="login_register" v-show="$route.params.id == 'register'">
+        <form class="loginform" key="registerform">
+          <section class="input_container">
+            <input placeholder="手机号" type="text" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="phoneNumber">
+            <img class="clear_icon" :src="iconclear" @click="_clearData('phoneNumber')"></img>
+          </section>
+          <section class="input_container">
+            <input placeholder="验证码" type="text" @keyup="_checkValue('verfyCode')" v-model="verfyCode">
+            <span :class="['verfyCode',isregpho?'activeVerfycode':'']" @click="_getCode()">{{verfyCodeTips}}</span>
+          </section>
+          <section class="input_container">
+            <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="userPassword">
+            <img class="clear_icon" :src="iconclear" @click="_clearData('userPassword')"></img>
+          </section>
+        </form>
+        <section>
+          <div :class="['loginbutton',isRegbtn?'actbtn':'']" @click="_regSubmit">注 册</div>
+          <section class="footer_section">
+            <span class="footer_word">注册表示你已同意</span>
+            <span @click="$router.push('/userprotocol')" class="protocol_word">《用户使用协议》</span>
+          </section>
         </section>
-        <section class="input_container">
-          <input placeholder="验证码" type="text" @keyup="_checkValue('verfyCode')" v-model="verfyCode">
-          <span :class="['verfyCode',isregpho?'activeVerfycode':'']" @click="_getCode()">{{verfyCodeTips}}</span>
-        </section>
-        <section class="input_container">
-          <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="userPassword">
-          <img class="clear_icon" :src="iconclear" @click="_clearData('userPassword')"></img>
-        </section>
-      </form>
+      </div>
 
-      <section v-if="loginOperate">
-        <div :class="['loginbutton',isbtn?'actbtn':'']" @click="_loginSubmit">登 录</div>
-        <section class="footer_section">
-          <router-link to='/forget' class="footer_word">忘记密码?</router-link>
-        </section>
-      </section>
-      <section v-else="loginOperate">
-        <div :class="['loginbutton',isRegbtn?'actbtn':'']" @click="_regSubmit">注 册</div>
-        <section class="footer_section">
-          <span class="footer_word">注册表示你已同意</span>
-          <span @click="$router.push('/userprotocol')" class="protocol_word">《用户使用协议》</span>
-        </section>
-      </section>
       <alertTip v-show="showAlertTip" @closeTip="_closeTip" :alertText="alertText" :alertType="alertType"></alertTip>
     </div>
   </div>
@@ -128,7 +131,7 @@ export default {
     //输入框验证
     _checkValue(type) {
       //登录页面
-      if (this.loginOperate) {
+      if (this.$route.params.id == 'login') {
         this.isbtn = false;
         switch (type) {
           case 'phoneNumber':
