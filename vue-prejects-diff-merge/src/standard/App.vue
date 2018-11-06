@@ -8,12 +8,23 @@
     <transition name='fade' v-else>
       <router-view/>
     </transition>
+    <footer-tab v-show='isShowBar'></footer-tab>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import footer from '@standard/components/homesub/footer';
 export default {
   name: 'app',
+  components: {
+    'footer-tab': footer,
+  },
+  computed: {
+    ...mapState({
+      isShowBar: state => state.isShowBar,
+    }),
+  },
 };
 </script>
 

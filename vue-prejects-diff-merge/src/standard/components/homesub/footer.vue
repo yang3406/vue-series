@@ -129,23 +129,23 @@
 
       </defs>
     </svg>
-    <section @click="gotoAddress({path: '/msite', query: {geohash}})" class="guide_item">
+    <section @click="gotoAddress({path: '/home'})" class="guide_item">
       <svg class="icon_style">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('msite') !== -1? '#msiteActive' : '#msite'"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.meta.footerActivedItem == 'home'? '#msiteActive' : '#msite'"></use>
       </svg>
-      <span>首页</span>
+      <span :class="$route.meta.footerActivedItem == 'home'?'footer_active_item':''">首页</span>
     </section>
-    <section @click="gotoAddress({path: '/search/geohash'})" class="guide_item">
+    <section @click="gotoAddress({path: '/nearby'})" class="guide_item">
       <svg class="icon_style">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('search') !== -1? '#findActive' : '#find'"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.meta.footerActivedItem == 'nearby'? '#findActive' : '#find'"></use>
       </svg>
-      <span>搜索</span>
+      <span :class="$route.meta.footerActivedItem == 'nearby'? 'footer_active_item':''">附近</span>
     </section>
-    <section @click="gotoAddress('/profile')" class="guide_item">
+    <section @click="gotoAddress('/mine')" class="guide_item">
       <svg class="icon_style">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('profile') !== -1? '#profileActive' : '#profile'"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.meta.footerActivedItem == 'mine'? '#profileActive' : '#profile'"></use>
       </svg>
-      <span>我的</span>
+      <span :class="$route.meta.footerActivedItem == 'mine'? 'footer_active_item':''">我的</span>
     </section>
   </section>
 </template>
@@ -170,6 +170,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$activedColor: #3190e8;
 #foot_guide {
   background-color: #fff;
   position: fixed;
@@ -194,6 +195,9 @@ export default {
   }
   span {
     @include sc(0.45rem, #666);
+  }
+  span.footer_active_item {
+    @include sc(0.45rem, $activedColor);
   }
 }
 </style>
