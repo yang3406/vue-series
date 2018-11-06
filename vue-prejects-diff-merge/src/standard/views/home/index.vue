@@ -34,15 +34,20 @@
       </nav>
     </section>
 
+    <footer-tab>
+      
+    </footer-tab>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { _getMebInfobyMebId } from '@standard/common/js/getData.js';
 import { isNullorEmpty } from '@standard/common/js/util.js';
 import { getImgPath } from '@standard/common/js/mixin.js';
 import ecSwiper from '@standard/components/common/ec-swiper-loops';
 import carItme from '@standard/components/homesub/caritem';
+import footer from '@standard/components/homesub/footer';
 import { imgdataobj } from '@standard/mock/swiper-loopimg/index.js'; //循坏滚动图片数据
 import { tabMenuDataObj } from '@standard/common/localdata/tab-menu-data.js'; //首页tab目录展示
 /* import { carList } from '@standard/mock/homemock/testdata.js'; */
@@ -51,6 +56,7 @@ export default {
   name: 'home',
   components: {
     'ec-swipe': ecSwiper,
+    'footer-tab': footer,
     'car-item': carItme,
   },
   mixins: [getImgPath],
@@ -61,6 +67,11 @@ export default {
       /* carList: carList.list, */
       tabimgList: tabMenuDataObj.list,
     };
+  },
+  computed: {
+    ...mapState({
+      isShowBar: state => state.isShowBar,
+    }),
   },
   mounted() {
     this._getMebInfobyMebId();

@@ -18,5 +18,16 @@
       }
     }
   }
-  
+}
+
+/* 底部tab */
+.bottom-footer{
+  position: fixed;
+  bottom: 0px;
+  border-top-width: 0.5px;/*no*/
+  border-top-color: #666;
+  border-top-style: solid;
+  height: 150px;
+  width: 100%;
+
 }

@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
     if (!store.getters.getIsLogin) {
       if (to.matched.some(m => m.meta.isAuth)) {
         //未登录 且需要登录权限
-        next('/useraccount/:login');
+        next('/useraccount/login');
       } else {
         next();
       }

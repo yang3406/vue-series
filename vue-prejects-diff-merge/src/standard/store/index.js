@@ -9,6 +9,7 @@ Vue.use(Vuex);
 const state = {
   isLogin: false, //是否登录
   isShowBar: false,//是否显示底部menu
+  activeIndex: 1, //footer底部选中样式
   mebid: '', //用户mebid
   latitude: '', // 当前位置纬度
   longitude: '', // 当前位置经度
