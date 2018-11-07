@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <header>
       <!-- 轮播图 -->
       <div class="header">

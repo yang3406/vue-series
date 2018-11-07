@@ -1,6 +1,6 @@
 <!-- 登录页面 2018.10.30 -->
 <template>
-  <div>
+  <div class="useraccount">
     <div class="loginContainer">
       <header class="clear">
         <div class="left header-wrap">

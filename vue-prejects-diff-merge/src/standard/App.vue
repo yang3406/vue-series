@@ -9,16 +9,19 @@
       <router-view/>
     </transition>
     <footer-tab v-show='isShowBar'></footer-tab>
+    <svg-icon></svg-icon>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import footer from '@standard/components/homesub/footer';
+import footerTab from '@standard/components/common/footer';
+import svgIcon from '@standard/components/common/svg';
 export default {
   name: 'app',
   components: {
-    'footer-tab': footer,
+    footerTab,
+    svgIcon,
   },
   computed: {
     ...mapState({

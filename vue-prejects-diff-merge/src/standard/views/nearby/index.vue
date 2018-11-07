@@ -1,6 +1,10 @@
 <!-- 百度地图 附近停车场-->
 <template>
-  <div></div>
+  <div class="baidu-map">
+    <div class="location">
+
+    </div>
+  </div>
 </template>
 
 <script>

@@ -1,0 +1,29 @@
+.mine-page {
+  .user-info{
+    .user-link {
+      padding: 0px 16px;
+      @include flexcontent(center);
+      align-items: center;
+      flex-flow: row nowrap;
+      .user-img {
+        display: inline-block;
+        @include wh(64px, 64px);
+        @include borderRadius(50%);
+        .user-img-svg {
+          border-radius: 50%;
+          @include wh(64px, 64px);
+        }
+      }
+      .user-number {
+        flex-grow: 1;
+      }
+      .arrow {
+        @include wh(0.46667rem, 0.98rem);
+        display: inline-block;
+        svg {
+          @include wh(100%, 100%);
+        }
+      }
+    }
+}
+}
