@@ -10,4 +10,6 @@ export const routes = [
   { path: '/art', component: _import('art'), meta: { keepAlive: false, isAuth: false, isShowBar: false } },
   { path: '/nearby', component: _import('nearby'), meta: { keepAlive: false, isAuth: false, isShowBar: false } }, //附近停车场 百度地图
   { path: '/mine', component: _import('mine'), meta: { keepAlive: false, isAuth: false, isShowBar: true, footerActivedItem: 'mine' } },   //我的
+  { path: '/mywallet', component: _import('mywallet'), meta: { keepAlive: false, isAuth: false, isShowBar: false } },   //我的钱包
+
 ];

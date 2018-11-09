@@ -35,8 +35,8 @@ $sizeColor: #444;
           width: 100%;
           &:active,
           &:focus {
-            @include inputcaret($loginbgColor);
-            border-bottom-color: $loginbgColor;
+            @include inputcaret($citySkinColor);
+            border-bottom-color: $citySkinColor;
           }
         }
         /* 设置输入框是否显示清除按钮 */
@@ -53,7 +53,7 @@ $sizeColor: #444;
           right: 4px;
         }
         .activeVerfycode {
-          color: $loginbgColor;
+          color: $citySkinColor;
         }
         .show_clear_icon {
           &::-ms-clear {

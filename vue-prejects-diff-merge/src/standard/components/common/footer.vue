@@ -170,7 +170,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$activedColor: #3190e8;
+$activedColor: $citySkinColor;
 #foot_guide {
   background-color: #fff;
   position: fixed;
@@ -178,7 +178,7 @@ $activedColor: #3190e8;
   left: 0;
   right: 0;
   bottom: 0;
-  @include wh(100%, 1.95rem);
+  @include wh(100%, $footerTabHeight);
   display: flex;
   box-shadow: 0 -0.026667rem 0.053333rem rgba(0, 0, 0, 0.1);
 }
