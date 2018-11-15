@@ -42,7 +42,7 @@
         <form class="loginform">
           <section class="input_container">
             <input placeholder="手机号" type="number" @keyup="_checkValue('phoneNumber')" class="show_clear_icon" required maxlength="11" v-model="phoneNumber">
-            <img class="clear_icon" :src="iconclear" @click="_clearData('phoneNumber')"></img>
+            <img class="clear_icon" :src="iconclear" @click="_clearData('phoneNumber')">
           </section>
           <section class="input_container">
             <input placeholder="验证码" type="text" @keyup="_checkValue('verfyCode')" v-model="verfyCode">
@@ -50,7 +50,7 @@
           </section>
           <section class="input_container">
             <input placeholder="密码" type="password" @keyup="_checkValue('userPassword')" class="show_clear_icon" v-model="userPassword">
-            <img class="clear_icon" :src="iconclear" @click="_clearData('userPassword')"></img>
+            <img class="clear_icon" :src="iconclear" @click="_clearData('userPassword')">
           </section>
         </form>
         <section>

@@ -4,6 +4,7 @@
 $citySkinColor:#508cee;
 /* 底部menu的高度 在有footer的时候 避免被遮住 显示不全*/
 $footerTabHeight:100px;
+
 /* 设置svg填充颜色 激活请传$citySkinColor: fillColor:填充色 $strokeColor:线条颜色*/
 @mixin SvgIconColor($fillColor:#c8c8c8,$strokeColor:#c8c8c8) {
   fill:$fillColor;
@@ -14,6 +15,35 @@ $footerTabHeight:100px;
 /* 设置页面里底部的高度 */
 @mixin setFooterBottom($h:$footerTabHeight){
   margin-bottom: $h;
+}
+
+/** 线性渐变
+*$direction为渐变方向 上到下180deg 下到上0deg 左到右90deg 右到左-90deg 
+*/
+@mixin linearGradient($color1:#fff,$color2:#ffffff,$direction:180deg) {
+  background: -webkit-linear-gradient($direction, $color1 $color2); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient($direction, $color1 $color2); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient($direction, $color1 $color2); /* Firefox 3.6 - 15 */
+  background: linear-gradient($direction, $color1, $color2); /* 标准的语法 */
+}
+
+/* 全屏 */
+@mixin absCover($bgc:#fff) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $bgc;
+}
+
+@mixin fixCover($bgc:#fff) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $bgc;
 }
 
 /* 背景图片和大小 */

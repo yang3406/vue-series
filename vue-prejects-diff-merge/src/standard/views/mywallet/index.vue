@@ -8,7 +8,9 @@
         <div>余额(元)</div>
       </section>
     </section>
-    <div class="operate">去充值</div>
+    <router-link to="/fastrecharge">
+      <div class="operate">去充值</div>
+    </router-link>
   </div>
 </template>
 

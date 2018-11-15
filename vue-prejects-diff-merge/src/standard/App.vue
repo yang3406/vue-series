@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <transition name="fade" mode="out-in" v-if='$route.meta.keepAlive'>
+    <transition name="router-fade" mode="out-in" v-if='$route.meta.keepAlive'>
       <keep-alive>
         <router-view/>
       </keep-alive>
     </transition>
-    <transition name='fade' v-else>
+    <transition name='router-fade' mode="out-in" v-else>
       <router-view/>
     </transition>
     <footer-tab v-show='isShowBar'></footer-tab>
@@ -37,13 +37,22 @@ export default {
   height: 100%;
 }
 
-.fade-enter-active,
+/* .fade-enter-active,
 .fade-leave-active {
   transition: all 0.2s ease;
 }
 
 .fade-enter,
 .fade-leave-active {
+  opacity: 0;
+} */
+
+.router-fade-enter-active,
+.router-fade-leave-active {
+  transition: opacity 0.3s;
+}
+.router-fade-enter,
+.router-fade-leave-active {
   opacity: 0;
 }
 </style>
