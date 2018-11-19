@@ -46,19 +46,16 @@
   }
   .link-item-content{
     @include wh(100%,100%);
-    border-bottom-color: #eeee;
-    border-bottom-width: 1px;/* no */
-    border-bottom-style: solid;
     display: flex;
     align-items: center;
     justify-content: space-between;
     span:nth-child(1){
-      @include sc(30px,#444);
+      @include sc(28px,#444);
     }
     span:nth-child(2){
         flex-grow: 1;
         text-align: right;
-        @include sc(26px,#999);
+        @include sc(24px,#999);
     }
     .link-item-svg{
       margin: 0px 32px;
@@ -69,9 +66,15 @@
        }
     }
     span.order-money{
-      @include sc(30px,#ff801a);
+      @include sc(28px,#ff801a);
     }
   }
+  .border_split{
+    border-bottom-color: #eee;
+    border-bottom-width: 1px;/* no */
+    border-bottom-style: solid;
+  }
+ 
 }
 
 .split-area{

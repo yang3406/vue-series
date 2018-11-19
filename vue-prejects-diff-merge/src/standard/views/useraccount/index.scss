@@ -70,7 +70,7 @@ $sizeColor: #444;
       vertical-align: middle;
       margin-top: 88px;
       width: 100%;
-      background-color: #d0d3d4;
+      background-color: $cityUnableOperateClr;
       height: 88px;
       line-height: 88px;
       @include sc(36px, #fff);

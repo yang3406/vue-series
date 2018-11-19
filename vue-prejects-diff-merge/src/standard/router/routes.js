@@ -65,6 +65,11 @@ export const routes = [
     meta: { keepAlive: false, isAuth: false, isShowBar: false }
   },
   {
+    path: '/coupon', //我的优惠券
+    component: _import('coupon'),
+    meta: { keepAlive: false, isAuth: false, isShowBar: false }
+  },
+  {
     path: '/carnum', //我的车牌
     component: _import('carnum'),
     meta: { keepAlive: false, isAuth: false, isShowBar: false }
@@ -74,5 +79,14 @@ export const routes = [
     component: _import('carnum/addcarnum'),
     meta: { keepAlive: false, isAuth: false, isShowBar: false }
   },
-
+  {
+    path: '/orderrecord',//定单记录
+    component: _import('orderrecord'),
+    meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '定单记录' }
+  },
+  {
+    path: '/orderrecord/detail',//定单详情
+    component: _import('orderrecord/detail'),
+    meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '定单详情' }
+  }
 ];

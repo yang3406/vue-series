@@ -20,24 +20,25 @@ exports.cssLoaders = function (options) {
     }
   };
 
-  var px2remLoader = {
-    loader: 'px2rem-loader',
-    options: {
-      remUnit: 81 //设置1rem为81px 对应css里面的81px = 1rem 然后 1rem = 根元素的font-size:54px  因为原型用的是*2x 设置为81px 和产品原型差不多  
-    }
-  }
+  /*   var px2remLoader = {
+      loader: 'px2rem-loader',
+      options: {
+        remUnit: 75 //75设置1rem为81px 对应css里面的81px = 1rem 然后 1rem = 根元素的font-size:54px  因为原型用的是*2x 设置为81px 和产品原型差不多  54
+      }
+    } */
 
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
-    var loaders = [cssLoader, px2remLoader];
+    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
         options: Object.assign({}, loaderOptions, {
           sourceMap: options.sourceMap
         })
-      });
+      })
     }
+
 
     // Extract CSS when that option is specified
     // (which is the case during production build)

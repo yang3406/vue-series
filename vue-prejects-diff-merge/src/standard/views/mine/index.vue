@@ -29,7 +29,7 @@
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
               </svg>
             </aside>
-            <div class="link-item-content">
+            <div class="link-item-content border_split">
               <span>我的钱包</span>
               <span class="order-money">28.0</span>
               <span class="link-item-svg">
@@ -57,7 +57,7 @@
             </div>
           </router-link>
 
-          <router-link to="/mydiscount" class="link-item">
+          <!--  <router-link to="/mydiscount" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
@@ -72,9 +72,9 @@
                 </svg>
               </span>
             </div>
-          </router-link>
+          </router-link> -->
 
-          <router-link to="/mydiscount" class="link-item">
+          <!-- <router-link to="/mydiscount" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
@@ -89,7 +89,7 @@
                 </svg>
               </span>
             </div>
-          </router-link>
+          </router-link> -->
 
         </section>
 
@@ -100,7 +100,7 @@
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
               </svg>
             </aside>
-            <div class="link-item-content">
+            <div class="link-item-content border_split">
               <span>车牌绑定</span>
               <span>可查看实时停车情况，自主缴费</span>
               <span class="link-item-svg">
@@ -111,7 +111,7 @@
             </div>
           </router-link>
 
-          <router-link to="/eleinvoice" class="link-item">
+          <!-- <router-link to="/eleinvoice" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
@@ -126,16 +126,16 @@
                 </svg>
               </span>
             </div>
-          </router-link>
+          </router-link> -->
 
-          <router-link to="/parkrecord" class="link-item">
+          <router-link to="/orderrecord" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
               </svg>
             </aside>
             <div class="link-item-content">
-              <span>停车记录</span>
+              <span>定单记录</span>
               <span></span>
               <span class="link-item-svg">
                 <svg>
@@ -145,7 +145,7 @@
             </div>
           </router-link>
 
-          <router-link to="/offlinemap" class="link-item">
+          <!--  <router-link to="/offlinemap" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
@@ -160,7 +160,7 @@
                 </svg>
               </span>
             </div>
-          </router-link>
+          </router-link> -->
         </section>
 
         <section class="userback split-area">
@@ -170,7 +170,7 @@
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
               </svg>
             </aside>
-            <div class="link-item-content">
+            <div class="link-item-content border_split">
               <span>意见反馈</span>
               <span></span>
               <span class="link-item-svg">

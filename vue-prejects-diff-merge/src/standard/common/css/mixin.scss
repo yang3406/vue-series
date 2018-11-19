@@ -2,6 +2,8 @@
 /* 城市皮肤颜色 除看改这个还需要改foot.vue中的svg图片的颜色 */
 /* 包含按钮可操作 边框的颜色 */
 $citySkinColor:#508cee;
+/* 不满足条件的按钮的颜色 */
+$cityUnableOperateClr:#d0d3d4;
 /* 底部menu的高度 在有footer的时候 避免被遮住 显示不全*/
 $footerTabHeight:100px;
 
@@ -33,7 +35,7 @@ $footerTabHeight:100px;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: auto; 
   background-color: $bgc;
 }
 
@@ -44,6 +46,11 @@ $footerTabHeight:100px;
   right: 0;
   bottom: 0;
   background-color: $bgc;
+}
+/* 设置显示页面的背景颜色 */
+@mixin pageColor($color:#fff) {
+  background-color: $color;
+  min-height: 100%;
 }
 
 /* 背景图片和大小 */

@@ -1,17 +1,15 @@
-<!-- 百度地图 附近停车场-->
+<!-- 我的优惠券 -->
 <template>
-  <div class="baidu-map">
-    <div class="location">
-
-    </div>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: 'nearby',
+  name: 'coupon',
   data() {
-    return {};
+    return {
+      dataList: [{ name: '1', age: '33' }, { name: '1', age: '33' }, { name: '1', age: '33' }],
+    };
   },
 
   /* components: {},
