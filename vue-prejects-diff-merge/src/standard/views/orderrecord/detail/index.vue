@@ -1,59 +1,64 @@
 <!-- 订单详情 -->
 <template>
   <div class="order_deatail">
-    <section v-if='orderObjDetail' class="order_deatail_section">
-      <section>
-        <ul class="header_nav">
-          <li>{{name}}</li>
-          <li>{{orderObjDetail.status}}</li>
-        </ul>
-      </section>
-      <section>
-        <ul>
-          <li>泊位编号</li>
-          <li>{{orderObjDetail.no}}</li>
-        </ul>
-        <ul>
-          <li>驶入时间</li>
-          <li>{{orderObjDetail.innerTime}}</li>
-        </ul>
-        <ul>
-          <li>计费时间</li>
-          <li>{{orderObjDetail.coutTime}}</li>
-        </ul>
-        <ul>
-          <li>驶出时间</li>
-          <li>{{orderObjDetail.innerTime}}</li>
-        </ul>
-        <ul>
-          <li>计费时长</li>
-          <li>{{orderObjDetail.status}}</li>
-        </ul>
-        <ul>
-          <li>应付金额</li>
-          <li>{{orderObjDetail.status}}</li>
-        </ul>
+    <section>
+      <mt-loadmore :top-method="_loadTop" ref="loadmore">
+        <section v-if='orderObjDetail' class="order_deatail_section">
+          <section>
+            <ul class="header_nav">
+              <li>{{name}}</li>
+              <li>{{orderObjDetail.status}}</li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>泊位编号</li>
+              <li>{{orderObjDetail.no}}</li>
+            </ul>
+            <ul>
+              <li>驶入时间</li>
+              <li>{{orderObjDetail.innerTime}}</li>
+            </ul>
+            <ul>
+              <li>计费时间</li>
+              <li>{{orderObjDetail.coutTime}}</li>
+            </ul>
+            <ul>
+              <li>驶出时间</li>
+              <li>{{orderObjDetail.innerTime}}</li>
+            </ul>
+            <ul>
+              <li>计费时长</li>
+              <li>{{orderObjDetail.status}}</li>
+            </ul>
+            <ul>
+              <li>应付金额</li>
+              <li>{{orderObjDetail.status}}</li>
+            </ul>
 
-        <ul>
-          <li>折扣优惠</li>
-          <li class="special_word">{{orderObjDetail.discnt}}</li>
-        </ul>
-        <ul>
-          <li>用券优惠</li>
-          <li class="special_word">{{orderObjDetail.paymoney}}</li>
-        </ul>
-      </section>
-      <section>
-        <ul>
-          <li>实付金额</li>
-          <li class="special_word">{{orderObjDetail.paymoney}}</li>
-        </ul>
-      </section>
+            <ul>
+              <li>折扣优惠</li>
+              <li class="special_word">{{orderObjDetail.discnt}}</li>
+            </ul>
+            <ul>
+              <li>用券优惠</li>
+              <li class="special_word">{{orderObjDetail.paymoney}}</li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>实付金额</li>
+              <li class="special_word">{{orderObjDetail.paymoney}}</li>
+            </ul>
+          </section>
+        </section>
+      </mt-loadmore>
     </section>
   </div>
 </template>
 
 <script>
+import { Loadmore } from 'mint-ui';
 export default {
   name: 'orderDeatail',
   data() {
@@ -73,19 +78,26 @@ export default {
   mounted() {
     this.name = this.$route.query.id;
   },
-  /* components: {},
+  components: { mtLoadmore: Loadmore },
 
-  computed: {},
+  /*computed: {},
 
-  mounted: {},
+  mounted() {},*/
 
-  methods: {}, */
+  methods: {
+    _loadTop() {
+      setTimeout(() => {
+        this.$refs.loadmore.onTopLoaded(); //重置位置
+      }, 1000);
+    },
+  },
 };
 </script>
 <style lang='scss' scoped>
 .order_deatail {
   padding: 0px 33px;
   background-color: #fff;
+  overflow: scroll;
   .order_deatail_section {
     section {
       padding: 30px 0px 20px 0px;

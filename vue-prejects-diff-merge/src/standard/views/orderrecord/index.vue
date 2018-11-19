@@ -2,16 +2,15 @@
 <template>
   <div class="orderrecord">
     <section>
-      <!-- 没有定单记录 -->
-      <!-- <mt-loadmore :top-method="loadTop('id')" :bottom-all-loaded="allLoaded" ref="loadmore"> -->
-      <!-- 无订单数据 -->
-      <!-- <section v-if="orderObj.list.length == 0">
+      <mt-loadmore class="wrapper" :top-method="_loadTop" @touchstart.native='needsclick' :bottom-method="_loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+        <!-- 没有记录 -->
+        <section v-if="orderObj.list.length == 0">
           <ul class="no_order">
             <li><img src="./blank_order.png"></li>
             <li>没有记录</li>
           </ul>
-        </section> -->
-      <!-- <section v-else>
+        </section>
+        <section v-else>
           <section v-for="(item,index) in orderObj.list" :key="index" class="order_detail_item" @click="_toOrderDetail(item.name)">
             <ul>
               <li class="sub_title">{{item.name}}</li>
@@ -41,12 +40,7 @@
               <li>{{item.date}}</li>
             </ul>
           </section>
-        </section> -->
-      <!-- </mt-loadmore> -->
-      <mt-loadmore :top-method="loadTop('load')" :bottom-all-loaded="allLoaded" ref="loadmore">
-        <ul>
-          <li v-for="item in orderObj.list">{{ item }}</li>
-        </ul>
+        </section>
       </mt-loadmore>
     </section>
   </div>
@@ -57,6 +51,7 @@ import { Loadmore } from 'mint-ui';
 export default {
   data() {
     return {
+      allLoaded: false,
       orderObj: {
         list: [
           {
@@ -75,19 +70,65 @@ export default {
             money: '12.00元',
             date: '2017-06-30 15:12:16',
           },
+          {
+            name: '财富港停车',
+            state: '1',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '1',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
         ],
       },
-      allLoaded: false,
     };
   },
   components: {
     mtLoadmore: Loadmore,
   },
-  /* computed: {},
-  mounted: {}, */
+  /* computed: {}, */
+  mounted() {
+    /* 避免fastclick 在处理点击的时候 进入详情页面 回复原始点击事件 */
+    this.$nextTick(() => {
+      document.getElementsByClassName('wrapper')[0].addEventListener('touchstart', function(event) {
+        event.target.classList.add('needsclick');
+      });
+    });
+  },
   methods: {
-    loadTop(id) {
-      alert('123');
+    _loadTop() {
+      setTimeout(() => {
+        this.$refs.loadmore.onTopLoaded(); //重置位置
+      }, 2000);
+    },
+    _loadBottom() {
+      setTimeout(() => {
+        this.allLoaded = true; //数据全部回去完毕
+        this.$refs.loadmore.onBottomLoaded(); //重置位置
+      }, 2000);
     },
     _toOrderDetail(item) {
       this.$router.push({ path: 'orderrecord/detail', query: { id: item } });
@@ -97,6 +138,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 .orderrecord {
+  overflow: scroll;
   @include pageColor();
   ul.no_order {
     margin-top: 35%;

@@ -82,7 +82,7 @@ export const routes = [
   {
     path: '/orderrecord',//定单记录
     component: _import('orderrecord'),
-    meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '定单记录' }
+    meta: { keepAlive: true, isAuth: false, isShowBar: false, title: '定单记录' }
   },
   {
     path: '/orderrecord/detail',//定单详情
