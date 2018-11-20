@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <transition name="router-fade" mode="out-in" v-if='$route.meta.keepAlive'>
+    <transition v-if='$route.meta.keepAlive'>
       <keep-alive>
-        <router-view/>
+        <router-view></router-view>
       </keep-alive>
     </transition>
-    <transition name='router-fade' mode="out-in" v-else>
-      <router-view/>
+    <transition v-else>
+      <router-view></router-view>
     </transition>
     <footer-tab v-show='isShowBar'></footer-tab>
     <svg-icon></svg-icon>

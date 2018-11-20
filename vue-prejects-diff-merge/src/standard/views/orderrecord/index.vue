@@ -4,13 +4,15 @@
     <section>
       <mt-loadmore class="wrapper" :top-method="_loadTop" @touchstart.native='needsclick' :bottom-method="_loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
         <!-- 没有记录 -->
-        <section v-if="orderObj.list.length == 0">
-          <ul class="no_order">
+        <section v-if="orderObj.list.length != 0">
+          <!-- <ul class="no_order">
             <li><img src="./blank_order.png"></li>
             <li>没有记录</li>
-          </ul>
+          </ul> -->
+          <no-data :iconname="'blank_order'" :tips="'没有记录'"></no-data>
         </section>
         <section v-else>
+          <h1>{{$route.meta.keepAlive}}</h1>
           <section v-for="(item,index) in orderObj.list" :key="index" class="order_detail_item" @click="_toOrderDetail(item.name)">
             <ul>
               <li class="sub_title">{{item.name}}</li>
@@ -48,6 +50,7 @@
 
 <script>
 import { Loadmore } from 'mint-ui';
+import noData from '@standard/components/common/ec-no-data.vue';
 export default {
   data() {
     return {
@@ -102,12 +105,61 @@ export default {
             money: '12.00元',
             date: '2017-06-30 15:12:16',
           },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '1',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '1',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123456',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
         ],
       },
     };
   },
   components: {
     mtLoadmore: Loadmore,
+    noData,
   },
   /* computed: {}, */
   mounted() {
@@ -117,8 +169,12 @@ export default {
         event.target.classList.add('needsclick');
       });
     });
+    this.sayHai();
   },
   methods: {
+    sayHai() {
+      alert('hi');
+    },
     _loadTop() {
       setTimeout(() => {
         this.$refs.loadmore.onTopLoaded(); //重置位置
@@ -163,8 +219,8 @@ export default {
       align-items: center;
       justify-content: space-between;
       li {
-        line-height: 48px;
-        @include sc(24px, #999);
+        line-height: 50px;
+        @include sc(28px, #999);
       }
       li:nth-child(2) {
         padding-left: 36px;

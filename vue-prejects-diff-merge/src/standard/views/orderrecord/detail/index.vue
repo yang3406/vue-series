@@ -35,7 +35,6 @@
               <li>应付金额</li>
               <li>{{orderObjDetail.status}}</li>
             </ul>
-
             <ul>
               <li>折扣优惠</li>
               <li class="special_word">{{orderObjDetail.discnt}}</li>
@@ -112,12 +111,13 @@ export default {
       display: flex;
       align-content: center;
       justify-content: flex-start;
-      li:nth-child(1) {
-        @include sc(28px, #999);
+      li {
+        line-height: 60px;
+        @include sc(30px, #999);
       }
       li:nth-child(2) {
-        @include sc(28px, #444);
-        margin-left: 30px;
+        color: #444;
+        margin-left: 46px;
       }
       li.special_word {
         color: #ff801a;
