@@ -2,17 +2,12 @@
 <template>
   <div class="orderrecord">
     <section>
-      <mt-loadmore class="wrapper" :top-method="_loadTop" @touchstart.native='needsclick' :bottom-method="_loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+      <mt-loadmore class="wrapper" :top-method="_loadTop" :bottom-method="_loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
         <!-- 没有记录 -->
         <section v-if="orderObj.list.length == 0">
-          <!-- <ul class="no_order">
-            <li><img src="./blank_order.png"></li>
-            <li>没有记录</li>
-          </ul> -->
-          <no-data :iconname="'blank_order'" :tips="'没有记录'"></no-data>
+          <no-data :iconname="'blank_order.png'" :tips="'没有记录'"></no-data>
         </section>
         <section v-else>
-          <h1>{{$route.meta.keepAlive}}</h1>
           <section v-for="(item,index) in orderObj.list" :key="index" class="order_detail_item" @click="_toOrderDetail(item.name)">
             <ul>
               <li class="sub_title">{{item.name}}</li>
@@ -173,10 +168,11 @@ export default {
   },
   methods: {
     sayHai() {
-      alert('hi');
+      //alert('hi');
     },
     _loadTop() {
       setTimeout(() => {
+        this.allLoaded = false; //充值上拉加载更多
         this.$refs.loadmore.onTopLoaded(); //重置位置
       }, 2000);
     },
@@ -196,19 +192,6 @@ export default {
 .orderrecord {
   overflow: scroll;
   @include pageColor();
-  ul.no_order {
-    margin-top: 35%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    @include sc(28px, #666666);
-    li {
-      margin-bottom: 50px;
-      img {
-        @include wh(180px, 180px);
-      }
-    }
-  }
   .order_detail_item {
     border-bottom-width: 8px; /* no */
     border-bottom-color: #f2f2f2;

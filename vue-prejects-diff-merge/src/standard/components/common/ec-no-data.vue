@@ -15,11 +15,11 @@ export default {
     return {};
   },
   /* iconname 图片名字 tips显示汉字 */
-  props: { iconname: { type: String }, tips: { type: String, default: '暂无记录' } },
+  props: { iconname: { type: String, default: 'blank_order.png' }, tips: { type: String, default: '暂无记录' } },
   /* components: {}, */
   computed: {
     iconsrc: function() {
-      return './nodataimg/' + this.iconname.replace(/^s+|\s+$/gm, '') + '.png';
+      return require('./nodataimg/' + this.iconname.replace(/^s+|\s+$/gm, ''));
     },
   },
   /*mounted: {},
@@ -36,7 +36,7 @@ ul.no_data {
   li {
     margin-bottom: 50px;
     img {
-      @include wh(180px, 180px);
+      @include wh(200px, 200px);
     }
   }
 }

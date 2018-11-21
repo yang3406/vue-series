@@ -88,5 +88,15 @@ export const routes = [
     path: '/orderrecord/detail',//定单详情
     component: _import('orderrecord/detail'),
     meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '定单详情' }
+  },
+  {
+    path: '/feedback',//意见反馈
+    component: _import('feedback'),
+    meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '意见反馈' }
+  },
+  {
+    path: '/aboutus',//关于我们
+    component: _import('aboutus'),
+    meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '关于我们' }
   }
 ];

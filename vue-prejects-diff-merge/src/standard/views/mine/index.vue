@@ -40,7 +40,7 @@
             </div>
           </router-link>
 
-          <router-link to="/mycoupon" class="link-item">
+          <router-link to="/coupon" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
