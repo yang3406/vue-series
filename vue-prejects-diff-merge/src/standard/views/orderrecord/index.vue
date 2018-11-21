@@ -4,7 +4,7 @@
     <section>
       <mt-loadmore class="wrapper" :top-method="_loadTop" @touchstart.native='needsclick' :bottom-method="_loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
         <!-- 没有记录 -->
-        <section v-if="orderObj.list.length != 0">
+        <section v-if="orderObj.list.length == 0">
           <!-- <ul class="no_order">
             <li><img src="./blank_order.png"></li>
             <li>没有记录</li>
