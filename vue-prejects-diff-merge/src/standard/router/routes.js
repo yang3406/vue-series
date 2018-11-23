@@ -80,9 +80,9 @@ export const routes = [
     meta: { keepAlive: false, isAuth: false, isShowBar: false }
   },
   {
-    path: '/orderrecord',//定单记录
+    path: '/orderrecord',//定单记录  从详情页返回才保存
     component: _import('orderrecord'),
-    meta: { keepAlive: true, isAuth: false, isShowBar: false, title: '定单记录' }
+    meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '定单记录' }
   },
   {
     path: '/orderrecord/detail',//定单详情

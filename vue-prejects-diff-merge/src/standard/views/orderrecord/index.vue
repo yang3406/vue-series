@@ -16,7 +16,7 @@
                 {{item.state == 0 ?"未缴费":'已缴费'}}
                 <span class="link-item-svg">
                   <svg>
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                   </svg>
                 </span>
               </li>
@@ -49,13 +49,14 @@ import noData from '@standard/components/common/ec-no-data.vue';
 export default {
   data() {
     return {
+      scrollTop:'',
       allLoaded: false,
       orderObj: {
         list: [
           {
             name: '财富港停车',
             state: '1',
-            carnum: '粤B123456',
+            carnum: '粤B12345m',
             time: '2小时31分钟',
             money: '12.00元',
             date: '2017-06-30 15:12:16',
@@ -63,7 +64,47 @@ export default {
           {
             name: '财富港停车',
             state: '0',
-            carnum: '粤B123456',
+            carnum: '粤B12345n',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '1',
+            carnum: '粤B123451',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123452',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '1',
+            carnum: '粤B123453',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123454',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123455',
             time: '2小时31分钟',
             money: '12.00元',
             date: '2017-06-30 15:12:16',
@@ -79,7 +120,15 @@ export default {
           {
             name: '财富港停车',
             state: '0',
-            carnum: '粤B123456',
+            carnum: '粤B123457',
+            time: '2小时31分钟',
+            money: '12.00元',
+            date: '2017-06-30 15:12:16',
+          },
+          {
+            name: '财富港停车',
+            state: '0',
+            carnum: '粤B123458',
             time: '2小时31分钟',
             money: '12.00元',
             date: '2017-06-30 15:12:16',
@@ -87,7 +136,7 @@ export default {
           {
             name: '财富港停车',
             state: '1',
-            carnum: '粤B123456',
+            carnum: '粤B123459',
             time: '2小时31分钟',
             money: '12.00元',
             date: '2017-06-30 15:12:16',
@@ -95,55 +144,7 @@ export default {
           {
             name: '财富港停车',
             state: '0',
-            carnum: '粤B123456',
-            time: '2小时31分钟',
-            money: '12.00元',
-            date: '2017-06-30 15:12:16',
-          },
-          {
-            name: '财富港停车',
-            state: '0',
-            carnum: '粤B123456',
-            time: '2小时31分钟',
-            money: '12.00元',
-            date: '2017-06-30 15:12:16',
-          },
-          {
-            name: '财富港停车',
-            state: '1',
-            carnum: '粤B123456',
-            time: '2小时31分钟',
-            money: '12.00元',
-            date: '2017-06-30 15:12:16',
-          },
-          {
-            name: '财富港停车',
-            state: '0',
-            carnum: '粤B123456',
-            time: '2小时31分钟',
-            money: '12.00元',
-            date: '2017-06-30 15:12:16',
-          },
-          {
-            name: '财富港停车',
-            state: '0',
-            carnum: '粤B123456',
-            time: '2小时31分钟',
-            money: '12.00元',
-            date: '2017-06-30 15:12:16',
-          },
-          {
-            name: '财富港停车',
-            state: '1',
-            carnum: '粤B123456',
-            time: '2小时31分钟',
-            money: '12.00元',
-            date: '2017-06-30 15:12:16',
-          },
-          {
-            name: '财富港停车',
-            state: '0',
-            carnum: '粤B123456',
+            carnum: '粤B12345p',
             time: '2小时31分钟',
             money: '12.00元',
             date: '2017-06-30 15:12:16',
@@ -164,11 +165,12 @@ export default {
         event.target.classList.add('needsclick');
       });
     });
-    this.sayHai();
+    document.body.scrollTop = document.documentElement.scrollTop = window.pageYOffset = sessionStorage.getItem('scrollTop') || 0;;
+    this.sayHi();
   },
   methods: {
-    sayHai() {
-      //alert('hi');
+    sayHi(){
+      //alert("hi");
     },
     _loadTop() {
       setTimeout(() => {
@@ -186,6 +188,22 @@ export default {
       this.$router.push({ path: 'orderrecord/detail', query: { id: item } });
     },
   },
+  beforeRouteLeave(to,from,next){
+    if(to.path.includes("detail")){
+      this.scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
+     sessionStorage.setItem("scrollTop",this.scrollTop);
+    }else{
+      sessionStorage.setItem("scrollTop",0);
+    }
+    next();
+  },
+  activated(){
+    document.body.scrollTop = document.documentElement.scrollTop = window.pageYOffset = sessionStorage.getItem('scrollTop');
+  },
+  deactivated(){
+    this.scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
+     sessionStorage.setItem("scrollTop",this.scrollTop);
+  }
 };
 </script>
 <style lang='scss' scoped>

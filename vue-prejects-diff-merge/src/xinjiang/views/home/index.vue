@@ -3,7 +3,6 @@
     我是standard
     <t></t>
     <router-link to="/art" class="test">点击我跳转</router-link>
-    <router-link to="/kill">点击我跳转新疆</router-link>
     <router-view></router-view>
   </div>
 </template>

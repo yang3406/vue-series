@@ -38,10 +38,12 @@
   align-items: center;
   @include wh(100%,108px);
   aside{
-    @include wh(100px,auto);
+    position:relative;
     text-align: center;
+    @include wh(100px,100%);
     svg{
-      @include wh(28px,29px);
+      @include center();
+      @include wh(30px,30px);
     }
   }
   .link-item-content{
@@ -60,7 +62,7 @@
     .link-item-svg{
       margin: 0px 32px;
        @include wh(30px,55px);
-       @include SvgIconColor(#c2c2c2,#c2c2c2);
+        @include SvgIconColor(#c2c2c2,#c2c2c2); 
        svg{
          @include wh(100%,100%);
        }

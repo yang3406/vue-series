@@ -8,7 +8,7 @@
         <div class="row-right">
           <span class="header-right-img row-right-text">
             <svg>
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#avatar-default"></use>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_avatar_default"></use>
             </svg>
           </span>
           <span class="row-right-arrow">
@@ -26,7 +26,7 @@
             </span>
             <span class="row-right-arrow">
               <svg fill="#d8d8d8">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
               </svg>
             </span>
           </div>
@@ -54,7 +54,7 @@
             </span>
             <span class="row-right-arrow">
               <svg fill="#d8d8d8" >
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
               </svg>
             </span>
           </div>

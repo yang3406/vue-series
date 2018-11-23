@@ -8,7 +8,7 @@
     </section>
     <section class="add_carnum" @click="_addCarNum()">
       <svg fill="#999" x="10" y="10">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_add"></use>
       </svg>
       <span>绑定车牌</span>
     </section>

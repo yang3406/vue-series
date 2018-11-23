@@ -8,14 +8,14 @@
           <img src='' class="user-img" v-if="getIsLogin">
           <!-- 未登录默认头像 -->
           <span class="user-img" v-else>
-            <svg class="user-img-svg">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#avatar-default"></use>
+            <svg class="user-img-svg" >
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_avatar_default"></use>
             </svg>
           </span>
           <span class="user-number"> {{mobile}} </span>
           <span class="arrow">
             <svg class="arrow-svg" fill="#fff">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
             </svg>
           </span>
         </router-link>
@@ -26,7 +26,7 @@
           <router-link to="/mywallet" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_wallet"></use>
               </svg>
             </aside>
             <div class="link-item-content border_split">
@@ -34,7 +34,7 @@
               <span class="order-money">28.0</span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -43,7 +43,7 @@
           <router-link to="/coupon" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_coupon"></use>
               </svg>
             </aside>
             <div class="link-item-content">
@@ -51,7 +51,7 @@
               <span>3张</span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -68,7 +68,7 @@
               <span>0分</span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -85,7 +85,7 @@
               <span>0分</span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -97,7 +97,7 @@
           <router-link to="/carnum" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_carnum"></use>
               </svg>
             </aside>
             <div class="link-item-content border_split">
@@ -105,7 +105,7 @@
               <span>可查看实时停车情况，自主缴费</span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -122,7 +122,7 @@
               <span></span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -131,7 +131,7 @@
           <router-link to="/orderrecord" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_oreder_recorder"></use>
               </svg>
             </aside>
             <div class="link-item-content">
@@ -139,7 +139,7 @@
               <span></span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -156,7 +156,7 @@
               <span></span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -167,7 +167,7 @@
           <router-link to="/feedback" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_feedback"></use>
               </svg>
             </aside>
             <div class="link-item-content border_split">
@@ -175,7 +175,7 @@
               <span></span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -183,7 +183,7 @@
           <router-link to="/aboutus" class="link-item">
             <aside>
               <svg fill="#4aa5f0">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_aboutus"></use>
               </svg>
             </aside>
             <div class="link-item-content">
@@ -191,7 +191,7 @@
               <span></span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -200,8 +200,8 @@
         <section class="setting split-area">
           <router-link to="/setting" class="link-item">
             <aside>
-              <svg fill="#4aa5f0">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+              <svg fill="#508cee">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_settting"></use>
               </svg>
             </aside>
             <div class="link-item-content">
@@ -209,7 +209,7 @@
               <span></span>
               <span class="link-item-svg">
                 <svg>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
                 </svg>
               </span>
             </div>
@@ -239,6 +239,10 @@ export default {
   computed: {
     ...mapGetters({ getIsLogin: 'getIsLogin' }),
   },
+  beforeRouteLeave(to,from,next){
+    to.meta.keepAlive = false;
+    next();
+  }
   /* components: {},
   mounted: {},
 

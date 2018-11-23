@@ -1,27 +1,27 @@
 <template>
   <div id="app">
-    <transition v-if='$route.meta.keepAlive'>
+    <transition >
       <keep-alive>
-        <router-view></router-view>
+        <router-view v-if='$route.meta.keepAlive'></router-view>
       </keep-alive>
     </transition>
-    <transition v-else>
-      <router-view></router-view>
+    <transition :name="'name'">
+      <router-view  v-if='!$route.meta.keepAlive'></router-view>
     </transition>
-    <footer-tab v-show='isShowBar'></footer-tab>
-    <svg-icon></svg-icon>
+    <ec-footer-tab v-show='isShowBar'></ec-footer-tab>
+    <ec-svg-icon></ec-svg-icon>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import footerTab from '@standard/components/common/footer';
-import svgIcon from '@standard/components/common/svg';
+import ecFooterTab from '@standard/components/common/ec-footer';
+import ecSvgIcon from '@standard/components/common/ec-svg';
 export default {
   name: 'app',
   components: {
-    footerTab,
-    svgIcon,
+    ecFooterTab,
+    ecSvgIcon,
   },
   computed: {
     ...mapState({

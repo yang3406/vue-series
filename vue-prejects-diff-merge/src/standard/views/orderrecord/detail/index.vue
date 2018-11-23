@@ -90,6 +90,10 @@ export default {
       }, 1000);
     },
   },
+  beforeRouteLeave(to,from,next){
+    to.meta.keepAlive = true; // 让列表页缓存
+    next();
+  }
 };
 </script>
 <style lang='scss' scoped>
