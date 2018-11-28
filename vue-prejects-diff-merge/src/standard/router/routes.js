@@ -5,15 +5,15 @@ export const routes = [
   //footerActivedItem footer激活tab样式 home首页  nearby附近 mine我的
   //路由不匹配时
   {
-    path: '*',
-    component: _import('notmatch'),
+    path: '*', redirect: '/home'
+    /* component: _import('notmatch'), */
   },
   { path: '/', redirect: '/home' },
   {
     // 首页
     path: '/home',
     component: _import('home'),
-    meta: { keepAlive: true, isAuth: false, isShowBar: true, footerActivedItem: 'home' }
+    meta: { keepAlive: false, isAuth: false, isShowBar: true, footerActivedItem: 'home' }
   },
   {
     // 登录 id:login登录 register注册 forget忘记密码
@@ -98,5 +98,10 @@ export const routes = [
     path: '/aboutus',//关于我们
     component: _import('aboutus'),
     meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '关于我们' }
-  }
+  },
+  {
+    path: '/guide',//指南
+    component: _import('guide'),
+    meta: { keepAlive: false, isAuth: false, isShowBar: false, title: '使用指南' }
+  },
 ];

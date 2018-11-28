@@ -20,7 +20,7 @@
 
 export default {
   appHost: '192.168.10.115:6081',
-  fsHost: '192.168.10.115:6081',
+  fsHost: '192.168.0.114:8080',
   appPort: '',
   appRoot: '/std',
   stdComid: '200000030',
@@ -38,4 +38,5 @@ export default {
   appActivityType: 2,  //活动类型，0是无活动，1是优惠券，2是折扣，3是二者同时有。
   carnumTopTwoDefault: ['粤', 'H'], //扫码输入车牌号查找停车订单去缴费时，车牌号前两位默认值。
   telOfScanCarnumPay: '0717-6232550', //扫码输入车牌号查找停车订单去缴费功能：订单详情页底部的客服电话。
-};
+  telOfCustomer: '023-63417071', //关于我们客服电话
+}; 

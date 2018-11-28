@@ -49,7 +49,7 @@ import noData from '@standard/components/common/ec-no-data.vue';
 export default {
   data() {
     return {
-      scrollTop:'',
+      scrollTop: '',
       allLoaded: false,
       orderObj: {
         list: [
@@ -165,11 +165,12 @@ export default {
         event.target.classList.add('needsclick');
       });
     });
-    document.body.scrollTop = document.documentElement.scrollTop = window.pageYOffset = sessionStorage.getItem('scrollTop') || 0;;
+    document.body.scrollTop = document.documentElement.scrollTop = window.pageYOffset =
+      sessionStorage.getItem('scrollTop') || 0;
     this.sayHi();
   },
   methods: {
-    sayHi(){
+    sayHi() {
       //alert("hi");
     },
     _loadTop() {
@@ -188,22 +189,24 @@ export default {
       this.$router.push({ path: 'orderrecord/detail', query: { id: item } });
     },
   },
-  beforeRouteLeave(to,from,next){
-    if(to.path.includes("detail")){
+  beforeRouteLeave(to, from, next) {
+    if (to.path.includes('detail')) {
       this.scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
-     sessionStorage.setItem("scrollTop",this.scrollTop);
-    }else{
-      sessionStorage.setItem("scrollTop",0);
+      sessionStorage.setItem('scrollTop', this.scrollTop);
+    } else {
+      sessionStorage.setItem('scrollTop', 0);
     }
     next();
   },
-  activated(){
-    document.body.scrollTop = document.documentElement.scrollTop = window.pageYOffset = sessionStorage.getItem('scrollTop');
+  activated() {
+    document.body.scrollTop = document.documentElement.scrollTop = window.pageYOffset = sessionStorage.getItem(
+      'scrollTop',
+    );
   },
-  deactivated(){
+  deactivated() {
     this.scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
-     sessionStorage.setItem("scrollTop",this.scrollTop);
-  }
+    sessionStorage.setItem('scrollTop', this.scrollTop);
+  },
 };
 </script>
 <style lang='scss' scoped>

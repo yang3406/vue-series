@@ -15,12 +15,15 @@ export const getImgPath = {
         imgurl = photoname;
         return imgurl;
       } else if (process.env.NODE_ENV == 'production') {
-        if (!photoname) {
+        imgurl = photoname;
+        console.log(config.fsHost);
+        return imgurl;
+        /* if (!photoname) {
           return;
         } else {
-          imgurl = location.protocol + "//" + config.fsHost + config.approot + "/image?module=sys&service=File&method=view&type=" + photopath + "&fileName=" + photoname + "&t=" + new Date().getTime();
-          return imgurl;
-        }
+           imgurl = location.protocol + "//" + config.fsHost + config.approot + "/image?module=sys&service=File&method=view&type=" + photopath + "&fileName=" + photoname + "&t=" + new Date().getTime(); 
+
+        } */
       }
     }
   }

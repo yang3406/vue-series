@@ -1,29 +1,21 @@
 <template>
   <div class="home">
-    <header>
+    <header class="header">
       <!-- 轮播图 -->
-      <div class="header">
-        <!-- swipeid为当前轮循图片的class -->
-        <ec-swipe swipeid="header-swipe" :delay='3000' :speed='600' effect="slide" :imgLazy="imgLazy">
-          <div @click="_jumpURl(imgItem.url)" v-for="imgItem in imgList" :key="imgItem.id" class="swiper-slide" slot="swiper-img-slot">
-            <div v-if="!imgLazy"><img :src="getImgPath('',imgItem.src)"></div>
-            <!-- 图片懒加载 -->
-            <div v-else>
-              <img :data-src="getImgPath('',imgItem.src)" class="swiper-lazy">
-              <div class="swiper-lazy-preloader"></div>
-            </div>
+      <!-- swipeid为当前轮循图片的class -->
+      <ec-swipe swipeid="header-swipe" :autoplay='{delay:800}' effect="slide" :imgLazy="imgLazy">
+        <div @click="_jumpURl(imgItem.url)" v-for="imgItem in imgList" :key="imgItem.id" class="swiper-slide" slot="swiper-img-slot">
+          <div v-if="!imgLazy"><img :src="getImgPath('',imgItem.src)"></div>
+          <!-- 图片懒加载 -->
+          <div v-else>
+            <img :data-src="getImgPath('',imgItem.src)" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
           </div>
-        </ec-swipe>
-      </div>
+        </div>
+      </ec-swipe>
     </header>
 
     <section>
-      <!-- <div class="car-meassage-area">
-        <car-item :carList="carList"></car-item>
-      </div> -->
-
-      <div class="add-car-area"></div>
-
       <nav class="tab-menu-area" v-if="tabimgList.length">
         <router-link :to="{path: tabItem.path}" v-for="tabItem in tabimgList" :key="tabItem.id" class="link_to_tab">
           <figure>
@@ -32,6 +24,47 @@
           </figure>
         </router-link>
       </nav>
+    </section>
+
+    <section class="feellesspay">
+      <ul>
+        <li>
+          <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_feellesspay"></use>
+          </svg>
+          <span>开启无感支付</span>
+        </li>
+        <li>
+          <span>去绑定</span>
+          <svg fill="#ff801a">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_right"></use>
+          </svg>
+        </li>
+      </ul>
+    </section>
+
+    <section class="bindcararea">
+      <ul>
+        <li>
+          <div @click="_gotoRouter('/carnum/addcarnum')">绑定车牌</div>
+        </li>
+        <li>
+          <span>绑定车牌后可查看实时停车情况以及停车订单信息</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="footer_swiper">
+      <ec-swipe swipeid="footer-swipe" :showpagination='false' :autoplay='false' :imgLazy="imgLazy">
+        <div @click="_jumpURl(imgItem.url)" v-for="imgItem in imgList" :key="imgItem.id" class="swiper-slide" slot="swiper-img-slot">
+          <div v-if="!imgLazy"><img :src="getImgPath('',imgItem.src)"></div>
+          <!-- 图片懒加载 -->
+          <div v-else>
+            <img :data-src="getImgPath('',imgItem.src)" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+        </div>
+      </ec-swipe>
     </section>
   </div>
 </template>
@@ -75,6 +108,11 @@ export default {
     _jumpURl(url) {
       if (!isNullorEmpty(url)) {
         window.location.href = url;
+      }
+    },
+    _gotoRouter(path) {
+      if (!isNullorEmpty(path)) {
+        this.$router.push(path);
       }
     },
   },

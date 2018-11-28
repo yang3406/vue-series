@@ -6,7 +6,7 @@
       <slot name="swiper-img-slot"></slot>
     </div>
     <!-- 分页器 -->
-    <div class="swiper-pagination"></div>
+    <div v-show="showpagination" class="swiper-pagination"></div>
     <!--  <div :class="{'swiper-pagination':pagination}"></div> -->
   </div>
 </template>
@@ -52,6 +52,19 @@ export default {
       type: Boolean,
       default: false,
     },
+    showpagination: {
+      type: Boolean,
+      default: true,
+    },
+    autoplay: {
+      default: function() {
+        return {
+          delay: 3000,
+          stopOnLastSlide: false,
+          disableOnInteraction: true,
+        };
+      },
+    },
   },
   data() {
     return {
@@ -77,10 +90,7 @@ export default {
       //分页类型
       //paginationType: that.paginationType,
       //是否自动播放
-      autoplay: {
-        delay: that.delay, //多久切换图片
-        disableOnInteraction: false, //用户操作swiper之后，是否禁止autoplay true为停止
-      },
+      autoplay: that.autoplay,
       direction: that.direction, //滑动方向
       effect: that.effect, //slide的切换效果
       lazy: {
@@ -97,16 +107,17 @@ export default {
 </script>
 <style lang='scss' scoped>
 @import '~@standard/plugins/swiper/swiper.min.css';
-.header .swiper-container {
-  img {
-    @include wh(100%, 400px);
+.swiper-container {
+  @include wh(100%, 100%);
+  .swiper-wrapper {
+    @include wh(100%, 100%);
+    * {
+      @include wh(100%, 100%);
+    }
   }
-}
-
-.footer .swiper-container {
-  img {
-    @include wh(100%, 200px);
-  }
+  /*  img {
+    @include wh(100%, 100%);
+  } */
 }
 /* .swiper-pagination-bullet-active {
   background: #fff;

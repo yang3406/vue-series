@@ -16,7 +16,7 @@ $footerTabHeight:100px;
 
 /* 设置页面里底部的高度 */
 @mixin setFooterBottom($h:$footerTabHeight){
-  margin-bottom: $h;
+  margin-bottom: $h + 15px;
 }
 
 /** 线性渐变

@@ -61,11 +61,11 @@
     }
     .link-item-svg{
       margin: 0px 32px;
-       @include wh(30px,55px);
-        @include SvgIconColor(#c2c2c2,#c2c2c2); 
-       svg{
+      @include wh(30px,55px);
+      @include SvgIconColor(#c2c2c2,#c2c2c2); 
+      svg{
          @include wh(100%,100%);
-       }
+      }
     }
     span.order-money{
       @include sc(28px,#ff801a);
