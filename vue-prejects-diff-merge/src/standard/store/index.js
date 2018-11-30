@@ -13,6 +13,13 @@ const state = {
   mebid: '', //用户mebid
   latitude: '', // 当前位置纬度
   longitude: '', // 当前位置经度
+  carnumList: [
+    { carnum: '新A12341', isemergy: false },
+    { carnum: '新B12342', isemergy: true },
+    { carnum: '新A12343', isemergy: false },
+    { carnum: '新B12344', isemergy: true },
+    { carnum: '新A12345', isemergy: false },
+  ],
 };
 
 export default new Vuex.Store({

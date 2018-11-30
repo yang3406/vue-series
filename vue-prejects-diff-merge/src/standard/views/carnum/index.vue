@@ -16,19 +16,16 @@
 </template>
 <script>
 import { MessageBox } from 'mint-ui';
+import { mapState,mapMutations } from 'vuex';
 export default {
   name: 'carnum',
   data() {
     return {
-      carnumList: [
-        { carnum: '苏A .12349', isemergy: false },
-        { carnum: '苏B .12349', isemergy: true },
-        { carnum: '苏A .12349', isemergy: false },
-        { carnum: '苏B .12349', isemergy: true },
-        { carnum: '苏A .12349', isemergy: false },
-      ],
     };
   },
+   computed: {
+     ...mapState({carnumList:state => state.carnumList})
+   },
   /* components: {},
 
   computed: {},*/
@@ -36,11 +33,13 @@ export default {
   /* mounted: {}, */
 
   methods: {
+     ...mapMutations(['deleteCarNum']),
     _addCarNum() {
       this.$router.push('/carnum/addcarnum');
     },
     _unbindcarnum(carnum) {
       MessageBox.confirm('解绑后，部分停车数据将丢失，</br>确定解绑?', '温馨提示').then(action => {
+        this.deleteCarNum(carnum);
         console.log(carnum + '解绑成功');
       });
     },

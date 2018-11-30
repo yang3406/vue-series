@@ -32,11 +32,11 @@ export default {
   isAllowChooseCity: false, // 是否允许选择城市，true允许 ，false 不允许， 默认允许。
   payIndex: '0',  //支付宝多个账号的时候选择的账号下标，0是app支付，1是手机网站支付。
   isAllowPark: true,  // 是否允许申请停车
-  cityShort: '粤',
+  cityShort: '新',
   authorizedSign: '深圳市前海亿车科技有限公司提供技术支持',
-  appLocation: { 'longitude': 116.153, 'latitude': 38.701 }, //任丘的经、纬度
+  appLocation: { 'longitude': 87.623272, 'latitude': 43.831565 }, //经、纬度
   appActivityType: 2,  //活动类型，0是无活动，1是优惠券，2是折扣，3是二者同时有。
-  carnumTopTwoDefault: ['粤', 'H'], //扫码输入车牌号查找停车订单去缴费时，车牌号前两位默认值。
+  carnumTopTwoDefault: ['新', 'H'], //扫码输入车牌号查找停车订单去缴费时，车牌号前两位默认值。
   telOfScanCarnumPay: '0717-6232550', //扫码输入车牌号查找停车订单去缴费功能：订单详情页底部的客服电话。
   telOfCustomer: '023-63417071', //关于我们客服电话
 }; 

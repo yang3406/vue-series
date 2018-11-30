@@ -56,7 +56,7 @@
 
     <section class="footer_swiper">
       <ec-swipe swipeid="footer-swipe" :showpagination='false' :autoplay='false' :imgLazy="imgLazy">
-        <div @click="_jumpURl(imgItem.url)" v-for="imgItem in imgList" :key="imgItem.id" class="swiper-slide" slot="swiper-img-slot">
+        <div v-for="imgItem in imgList" :key="imgItem.id" class="swiper-slide" slot="swiper-img-slot">
           <div v-if="!imgLazy"><img :src="getImgPath('',imgItem.src)"></div>
           <!-- 图片懒加载 -->
           <div v-else>

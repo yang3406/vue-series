@@ -19,5 +19,13 @@ export default {
       state.mebid = "";
       removeSessionStore("mebid");
     }
-  }
+  },
+  //增加车牌
+  addCarNum(state, carObj) {
+    state.carnumList.push({carnum:carObj.carNumber,isemergy:carObj.carType});
+  },
+  //删除车牌
+  deleteCarNum(state, carnum) {
+    state.carnumList.splice(state.carnumList.findIndex(item => item.carnum === carnum), 1);
+  },
 };

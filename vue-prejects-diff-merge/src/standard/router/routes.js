@@ -31,7 +31,7 @@ export const routes = [
     //附近停车场 百度地图
     path: '/nearby',
     component: _import('nearby'),
-    meta: { keepAlive: false, isAuth: false, isShowBar: false }
+    meta: { keepAlive: false, isAuth: false, isShowBar: true,footerActivedItem:'nearby' }
   },
   {
     //我的
