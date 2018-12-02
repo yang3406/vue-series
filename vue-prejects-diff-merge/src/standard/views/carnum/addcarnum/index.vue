@@ -1,6 +1,6 @@
 <!-- 新增车牌 -->
 <template>
-  <div class="add_carnum_area">
+  <div class="add_carnum_area carnumboard">
     <section>
       <div id="keyBoard"></div>
     </section>
@@ -34,14 +34,14 @@ export default {
         onBtnSaveClick: function() {
           console.log(input.getNumber());
           console.log(input.getNumberType());
-          _this.addCarNum({carNumber:input.getNumber(),carType:input.getNumberType()});
+          _this.addCarNum({ carNumber: input.getNumber(), carType: input.getNumberType() });
           _this.$indicator.open({
-            spinnerType: 'fading-circle'
+            spinnerType: 'fading-circle',
           });
-          setTimeout(function(){
+          setTimeout(function() {
             _this.$indicator.close();
-            _this.$router.push("/carnum");
-          },1000);
+            _this.$router.push('/carnum');
+          }, 1000);
         },
       });
     },

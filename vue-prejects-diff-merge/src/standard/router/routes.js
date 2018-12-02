@@ -5,8 +5,8 @@ export const routes = [
   //footerActivedItem footer激活tab样式 home首页  nearby附近 mine我的
   //路由不匹配时
   {
-    path: '*', redirect: '/home'
-    /* component: _import('notmatch'), */
+    path: '*',
+    component: _import('notmatch'),
   },
   { path: '/', redirect: '/home' },
   {
@@ -31,7 +31,7 @@ export const routes = [
     //附近停车场 百度地图
     path: '/nearby',
     component: _import('nearby'),
-    meta: { keepAlive: false, isAuth: false, isShowBar: true,footerActivedItem:'nearby' }
+    meta: { keepAlive: false, isAuth: false, isShowBar: true, footerActivedItem: 'nearby' }
   },
   {
     //我的

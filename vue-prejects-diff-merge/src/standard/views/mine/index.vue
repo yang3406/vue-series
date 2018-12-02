@@ -8,7 +8,7 @@
           <img src='' class="user-img" v-if="getIsLogin">
           <!-- 未登录默认头像 -->
           <span class="user-img" v-else>
-            <svg class="user-img-svg" >
+            <svg class="user-img-svg">
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_avatar_default"></use>
             </svg>
           </span>
@@ -197,7 +197,7 @@
             </div>
           </router-link>
         </section>
-        <section class="setting split-area">
+        <!-- <section class="setting split-area">
           <router-link to="/setting" class="link-item">
             <aside>
               <svg fill="#508cee">
@@ -214,7 +214,7 @@
               </span>
             </div>
           </router-link>
-        </section>
+        </section> -->
       </section>
     </div>
   </div>
@@ -239,10 +239,10 @@ export default {
   computed: {
     ...mapGetters({ getIsLogin: 'getIsLogin' }),
   },
-  beforeRouteLeave(to,from,next){
+  beforeRouteLeave(to, from, next) {
     to.meta.keepAlive = false;
     next();
-  }
+  },
   /* components: {},
   mounted: {},
 
