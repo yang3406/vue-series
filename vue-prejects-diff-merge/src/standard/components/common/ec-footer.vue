@@ -126,19 +126,19 @@
         </symbol>
       </defs>
     </svg>
-    <section @click="gotoAddress({path: '/home'})" class="guide_item">
+    <section @click="_gotoAddress({path: '/home'})" class="guide_item">
       <svg class="icon_style">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.meta.footerActivedItem == 'home'? '#msiteActive' : '#msite'"></use>
       </svg>
       <span :class="$route.meta.footerActivedItem == 'home'?'footer_active_item':''">首页</span>
     </section>
-    <section @click="gotoAddress({path: '/nearby'})" class="guide_item">
+    <section @click="_gotoAddress({path: '/nearby'})" class="guide_item">
       <svg class="icon_style">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.meta.footerActivedItem == 'nearby'? '#findActive' : '#find'"></use>
       </svg>
       <span :class="$route.meta.footerActivedItem == 'nearby'? 'footer_active_item':''">附近</span>
     </section>
-    <section @click="gotoAddress('/mine')" class="guide_item">
+    <section @click="_gotoAddress('/mine')" class="guide_item">
       <svg class="icon_style">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.meta.footerActivedItem == 'mine'? '#profileActive' : '#profile'"></use>
       </svg>
@@ -159,7 +159,7 @@ export default {
     ...mapState(['geohash']),
   },
   methods: {
-    gotoAddress(path) {
+    _gotoAddress(path) {
       this.$router.push(path);
     },
   },
@@ -171,30 +171,30 @@ $activedColor: $citySkinColor;
 #foot_guide {
   background-color: #fff;
   position: fixed;
-  z-index: 250;
+  z-index: 9999;
   left: 0;
   right: 0;
   bottom: 0;
   @include wh(100%, $footerTabHeight);
   display: flex;
   box-shadow: 0 -0.026667rem 0.053333rem rgba(0, 0, 0, 0.1);
-}
-.guide_item {
-  flex: 1;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-  justify-content:center;
-  .icon_style {
-    @include wh(40px, 50px);
-    fill: #ccc;
-  }
-  span {
-    @include sc(24px, #666);
-  }
-  span.footer_active_item {
-    @include sc(24px, $activedColor);
+  .guide_item {
+    flex: 1;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .icon_style {
+      @include wh(40px, 50px);
+      fill: #ccc;
+    }
+    span {
+      @include sc(24px, #666);
+    }
+    span.footer_active_item {
+      @include sc(24px, $activedColor);
+    }
   }
 }
 </style>

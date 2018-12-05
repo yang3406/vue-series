@@ -118,5 +118,9 @@ export default {
     border-right-color: $citySkinColor;
   }
 }
+/* 百度地图 去掉logo */
+.anchorBL {
+      display: none;
+ }
 </style>
 

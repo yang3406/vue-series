@@ -2,20 +2,18 @@
 <template>
   <div class="bm_container">
     <baidu-map class="bm_view" :center="center" :zoom="zoom" @ready="handler" :ak="ak">
-      <!-- <bm-geolocation anchor="BMAP_ANCHOR_TOP_RIGHT" :showAddressBar="true" :locationIcon="{url: require('./svg/location.svg'), size: {width: 18, height: 18}}" :autoLocation="true" @locationSuccess="getLocationSccess" @locationError="getLocationError"></bm-geolocation> -->
-      <!-- 自定义定位图标覆盖物 -->
-      <!-- <bm-marker id="union444" :position="autoLocationPoint" :dragging="true" :icon="{url: require('./svg/location.svg'), size: {width: 18, height: 18}}">
+      <!-- 定位当前地址 -->
+      <bm-geolocation anchor="BMAP_ANCHOR_TOP_RIGHT" :showAddressBar="false" :autoLocation="true" :offset="{height:80}" @locationSuccess="getLocationSccess" :locationIcon="locationIconObj" @locationError="getLocationError"></bm-geolocation>
+      <!-- 自定义可移动覆盖物 -->
+      <bm-marker :position="moveIconObj" :dragging="true" :raiseOnDrag="true" :icon="moveIconObj" animation="BMAP_ANIMATION_BOUNCE" v-if="initLocation">
       </bm-marker>
-       -->
-      <bm-marker :position="autoLocationPoint" :scroll-wheel-zoom="true" :dragging="true" :raiseOnDrag="true" animation="BMAP_ANIMATION_BOUNCE"  v-if="initLocation">
-      </bm-marker>
-
     </baidu-map>
   </div>
 </template>
 
 <script>
-import { BaiduMap, GmGeolocation, BmLabel, BmMarker } from 'vue-baidu-map';
+import { BaiduMap, BmLabel, BmMarker } from 'vue-baidu-map';
+import BmGeolocation from 'vue-baidu-map/components/controls/Geolocation.vue';
 import config from '@standard/common/js/config.js';
 export default {
   name: 'nearby',
@@ -27,12 +25,34 @@ export default {
       initLocation: false,
       /* autoLocationPoint: { lng: config.appLocation.longitude || 0, lat: config.appLocation.latitude || 0 }, */
       autoLocationPoint: {},
+      moveIconObj:{
+        url: require('./svg/location.svg'),
+        size: {width:30,height:30},
+        opts: {
+          anchor: {width:30,height:30},
+          imageOffset: {width:0,height:0},
+          imageSize: {width:30,height:30},
+          /* infoWindowAnchor: size,
+          printImageUrl: imgurl, */
+         }
+      },
+      locationIconObj:{
+        url: require('./svg/circle.svg'),
+        size: {width:15,height:15},
+        opts: {
+          anchor: {width:15,height:15},
+          imageOffset: {width:0,height:0},
+          imageSize: {width:15,height:15},
+          /* infoWindowAnchor: size,
+          printImageUrl: imgurl, */
+         }
+      }
     };
   },
 
   components: {
     BaiduMap,
-    GmGeolocation,
+    BmGeolocation,
     BmMarker,
     BmLabel,
   },
@@ -42,6 +62,7 @@ export default {
   mounted: {},*/
 
   methods: {
+    
     handler({ BMap, map }) {
       //获取当前定位
       let _this = this;
@@ -58,7 +79,8 @@ export default {
         { enableHighAccuracy: true }, //是否允许更高精确度
       );
     },
-    getLocationSccess(location) {
+    getLocationSccess(point,AddressComponent,marker) {
+      console.dir(location);
       /* console.dir('定位成功' + location.longitude);
       this.center = location; */
     },
@@ -73,9 +95,6 @@ export default {
   .bm_view {
     width: 100%;
     height: 100vh;
-    .anchorBL {
-      display: none;
-    }
   }
 }
 </style>

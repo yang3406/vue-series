@@ -13,7 +13,7 @@ export const routes = [
     // 首页
     path: '/home',
     component: _import('home'),
-    meta: { keepAlive: false, isAuth: false, isShowBar: true, footerActivedItem: 'home' }
+    meta: { keepAlive: false, isAuth: false, isShowBar: true, footerActivedItem: 'home' ,title:''}
   },
   {
     // 登录 id:login登录 register注册 forget忘记密码
