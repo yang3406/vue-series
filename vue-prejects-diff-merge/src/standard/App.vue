@@ -1,3 +1,9 @@
+/*
+ * @Author: yangjs 
+ * @Date: 2018-12-07 16:23:39 
+ * @Last Modified by:   yangjs 
+ * @Last Modified time: 2018-12-07 16:23:39 
+ */
 <template>
   <div id="app">
     <transition>
