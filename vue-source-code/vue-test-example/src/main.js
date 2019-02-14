@@ -20,5 +20,5 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App,)
+  render: h => h('div', "<h1>this is an error</h1>")
 }) 
