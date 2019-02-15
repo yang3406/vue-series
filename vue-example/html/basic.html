@@ -10,17 +10,22 @@
 
 <body>
   <div id="app">
-    {{message}}
+    <div>{{message}}</div>
+    <div v-once>这个将不会改变:{{name}}</div>
   </div>
 </body>
 <script src="../js/vue.js"></script>
 <script>
-  var app = new Vue({
-    el: '#app',
-    data: {
-      message: "hello vue"
-    }
-  })
+  let dataObj = { message: "hello vue", name: 'yang' };
+  var vm = new Vue({
+    /* el: '#app', */
+    data: dataObj
+  }).$mount("#app");
+  //在控制台修改vm.message vm.$data.message dataObj.message 发现三个是响应式的(同时变化) 推断用的是同一个内存存储的值
+  console.log(vm.message);
+  console.log(vm.$data.message);
+  console.log(vm.message == dataObj.message);
+
 </script>
 
 </html>
