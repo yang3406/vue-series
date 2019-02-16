@@ -11,15 +11,36 @@
 <body>
   <div id="app">
     <div>{{message}}</div>
-    <div v-once>这个将不会改变:{{name}}</div>
+    <div>
+      firstname输入框:
+      <input v-model='firstname'> lastname输入框:
+      <input v-model='lastname'>
+    </div>
+    <div v-once>这个v-once赋值的firstname将不会改变:{{firstname}}</div>
+    <div>我将通过computed获取fullname：
+      <span>{{fullname}}</span>
+    </div>
+    <div>我将通过methods获取fullname：
+      <span>{{fullnamer()}}</span>
+    </div>
   </div>
 </body>
 <script src="../js/vue.js"></script>
 <script>
-  let dataObj = { message: "hello vue", name: 'yang' };
+  let dataObj = { message: "hello vue", firstname: 'yang', lastname: "js" };
   var vm = new Vue({
     /* el: '#app', */
-    data: dataObj
+    data: dataObj,
+    computed: {
+      fullname: function () {
+        return this.firstname + this.lastname;
+      }
+    },
+    methods: {
+      fullnamer: function () {
+        return this.firstname + this.lastname;
+      }
+    }
   }).$mount("#app");
   //在控制台修改vm.message vm.$data.message dataObj.message 发现三个是响应式的(同时变化) 推断用的是同一个内存存储的值
   console.log(vm.message);
