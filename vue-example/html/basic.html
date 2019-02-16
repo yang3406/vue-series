@@ -12,33 +12,64 @@
   <div id="app">
     <div>{{message}}</div>
     <div>
-      firstname输入框:
-      <input v-model='firstname'> lastname输入框:
-      <input v-model='lastname'>
+      <p>firstname输入框:
+        <input v-model='firstname'>
+      </p>
+      <p>lastname输入框:
+        <input v-model='lastname'>
+      </p>
     </div>
     <div v-once>这个v-once赋值的firstname将不会改变:{{firstname}}</div>
     <div>我将通过computed获取fullname：
-      <span>{{fullname}}</span>
+      <span>{{cfullname}}</span>
     </div>
     <div>我将通过methods获取fullname：
-      <span>{{fullnamer()}}</span>
+      <span>{{mfullname()}}</span>
+    </div>
+    <div>我将通过watch获取fullname：
+      <span>{{wfullname}}</span>
     </div>
   </div>
 </body>
 <script src="../js/vue.js"></script>
 <script>
-  let dataObj = { message: "hello vue", firstname: 'yang', lastname: "js" };
+  let dataObj = { message: "hello vue", firstname: 'yang', lastname: "js", wfullname: '' };
   var vm = new Vue({
     /* el: '#app', */
     data: dataObj,
+    /* computed和methods的方法名 不能一样 */
     computed: {
-      fullname: function () {
-        return this.firstname + this.lastname;
-      }
+      /** 计算属性基于依赖进行缓存 只有其依赖改变时 值才会跟着改变 如下只有firstname和lastname改变 fullname才会变 date值改变值不变
+      * computed类似构造方法 它有setter和getter方法
+      */
+      cfullname: function () {
+        return this.firstname + this.lastname + Date.now();
+      },
+      /* cfullname: {
+        get: function () {
+          return this.firstname + ' ' + this.lastname
+        },
+        // setter
+        set: function (newValue) {
+          var names = newValue.split(' ')
+          this.firstname = names[0]
+          this.lastname = names[names.length - 1]
+        }
+      } */
     },
     methods: {
-      fullnamer: function () {
-        return this.firstname + this.lastname;
+      /*  */
+      mfullname: function () {
+        return this.firstname + this.lastname + Date.now();
+      }
+    },
+    watch: {
+      /* 在data中声明wfullname 输入框的值变化时才改变值 */
+      firstname: function (newValue, oldValue) {
+        this.wfullname = this.firstname + this.lastname;
+      },
+      lastname: function (newValue, oldValue) {
+        this.wfullname = this.firstname + this.lastname;
       }
     }
   }).$mount("#app");
