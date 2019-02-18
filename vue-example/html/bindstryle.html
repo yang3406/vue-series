@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue绑定style的用法</title>
+</head>
+<style>
+  .red {
+    color: red;
+  }
+
+  .bgc {
+    background-color: gray;
+  }
+
+  .text-danger {
+    font-size: 20px;
+
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div>
+      <p>我来通过v-bind:class赋值对象来绑定样式值 可以动态改变属性值改变样式 样式class名字包含'-'的 要用''包含,如'text-danger',不然报错
+        <span class="bgc" :class="{red:isred,'text-danger':isfz}">hello vue</span>
+        <button @click="toogclass">点击我动态改变样式</button>
+      </p>
+
+      <div>---------------------------------------</div>
+      <p>我来通过v-bind:class赋值数组来绑定样式值 可以用基础运算改变样式
+        <span :class="[hasbgc,iserror ? 'text-danger red':'' ]">hello vue</span>
+        <button @click="tooglearrclass">点击我动态改变样式</button>
+      </p>
+
+      <div>---------------------------------------</div>
+      <p>我来通过v-bind:style 绑定内联样式修改样式
+        <span :style="{color:activecolor,fontSize:fontSize+'px'}">hello vue</span>
+      </p>
+      也可以赋值在对象上
+      <p>我来通过v-bind:style 绑定对象 从而绑定内联样式修改样式 用数组绑定多个
+        <span :style="[colorobj,fzobj]">hello vue</span>
+      </p>
+
+      <h1>请注意 样式用在组件上</h1>
+      <div>当在一个自定义组件上使用 class 属性时，这些类将被添加到该组件的根元素上面。这个元素上已经存在的类不会被覆盖。</div>
+
+    </div>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    data: {
+      isred: true,
+      isfz: true,
+      hasbgc: 'bgc',
+      iserror: true,
+      activecolor: 'red',
+      fontSize: 5,
+      colorobj: {
+        color: 'red'
+      },
+      fzobj: {
+        fontSize: '5px',
+      }
+    },
+    methods: {
+      toogclass: function () {
+        this.isred = !this.isred;
+        this.isfz = !this.isfz;
+      },
+      tooglearrclass: function () {
+        this.iserror = !this.iserror;
+      }
+    }
+  }).$mount("#app");
+</script>
+
+</html>
