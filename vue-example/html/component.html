@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组件的用法</title>
+  <style>
+    .tip {
+      color: blue
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <p>父子组件时间传值</p>
+    <section>
+      <div>
+        <p>我要把值传给子组件</p>
+        <c-component @caddage="addAgefromc" :obj="person">我通过slot传给子组件</c-component>
+      </div>
+    </section>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  Vue.component('c-component', {
+    props: ['obj'],
+    template: '<div><div class="tip"><p>我是组件,接收来自父组件的值我的名字{{obj.name}}---我的年龄{{obj.age}}</p></div><div>我是子组件 我要自增一年年龄<button @click="addAge()">年龄自增1</button></div><slot></slot></div>',
+    methods: {
+      addAge: function () {
+        this.$emit("caddage");
+      }
+    }
+  })
+
+  let vm = new Vue({
+    data: function () {
+      return {
+        person: {
+          name: 'yjs',
+          age: '28'
+        }
+      }
+    },
+    methods: {
+      addAgefromc: function () {
+        this.person.age++;
+      }
+    }
+  }).$mount("#app");
+</script>
+
+</html>
