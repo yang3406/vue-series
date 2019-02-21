@@ -10,6 +10,10 @@
     .tip {
       color: blue
     }
+
+    .red {
+      color: red;
+    }
   </style>
 </head>
 
@@ -19,19 +23,33 @@
     <section>
       <div>
         <p>我要把值传给子组件</p>
-        <c-component @caddage="addAgefromc" :obj="person">我通过slot传给子组件</c-component>
+        <c-component @caddage="addAgefromc" :obj="person" class="red">我通过slot传给子组件</c-component>
       </div>
     </section>
+
+    <h1>用.sync绑定值变化</h1>
+    <auto-change v-bind:title.sync="title"></auto-change>
+    我的父组件的值{{title}}
   </div>
 </body>
 <script src="../js/vue.js"></script>
 <script>
   Vue.component('c-component', {
     props: ['obj'],
-    template: '<div><div class="tip"><p>我是组件,接收来自父组件的值我的名字{{obj.name}}---我的年龄{{obj.age}}</p></div><div>我是子组件 我要自增一年年龄<button @click="addAge()">年龄自增1</button></div><slot></slot></div>',
+    template: '<div class="tip"><div><p>我是子组件,接收来自父组件的值我的名字{{obj.name}}---我的年龄{{obj.age}}</p></div><div>我是子组件 我要自增一年年龄<button @click="addAge()">年龄自增1</button></div><slot></slot></div>',
     methods: {
       addAge: function () {
         this.$emit("caddage");
+      }
+    }
+  })
+
+  Vue.component('auto-change', {
+    props: ['title'],
+    template: '<div><p>子组件用.sync绑定值变化{{title}}</p><button @click="addone">点击加1</button></div>',
+    methods: {
+      addone: function () {
+        this.title += "1";
       }
     }
   })
@@ -42,7 +60,8 @@
         person: {
           name: 'yjs',
           age: '28'
-        }
+        },
+        title: "父子组件通过.sync传值",
       }
     },
     methods: {
