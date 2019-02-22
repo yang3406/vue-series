@@ -127,7 +127,7 @@ html,body{
   }
 }
 
-/* 更改模拟键盘的样式 不知道为啥放在这里不生效 放在app.vue里面去了*/
+/* 更改模拟键盘的样式 px没有自动转为rem 如果要放在这里用 要用rem做单位*/
  /* .carnumboard{ 
   #inputboxWrapper {
     padding-top: 80px;
