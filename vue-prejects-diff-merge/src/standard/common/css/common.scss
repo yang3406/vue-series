@@ -1,0 +1,191 @@
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 0px;  
+    height: 0px;  
+    background-color: #F5F5F5;  
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);  
+    border-radius: 10px;  
+    background-color: #F5F5F5;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    background-color: #555;  
+}  
+
+input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+textarea { -webkit-appearance: none;}   
+
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: #F5F5F5;
+}
+
+.back_img{
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.margin{
+    margin: 0 auto;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@keyframes backOpacity{
+   0%   { opacity: 1 }
+   25%  { opacity: .5 }
+   50%  { opacity: 1 }
+   75%  { opacity: .5 }
+   100% { opacity: 1 }
+}
+
+.animation_opactiy{
+    animation: backOpacity 2s ease-in-out infinite;
+}
+
+/* 模拟提交按钮 满足条件的 */
+.ec_btn_model_submit{
+  background-color: $citySkinColor;
+  height: 100px;
+  line-height: 100px;
+  @include sc(36px, #fff);
+  margin: 0 auto;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* 模拟提交按钮 不满足条件的 */
+.ec_btn_model_gray_submit{
+  @extend .ec_btn_model_submit;
+  background-color: $cityUnableOperateClr;
+}
+
+/* 输入框 有输入值时 删除图标 */
+.ec_input_icon_delete_container {
+  position: relative;
+  @include placeholder(30px, #999);
+  input {
+    padding: 10px 2px;
+    border-bottom-color: #ddd;
+    border-bottom-width: 1px; /*no*/
+    border-bottom-style: solid;
+    width: 100%;
+    &:active,
+    &:focus {
+      @include inputcaret($citySkinColor);
+      border-bottom-color: $citySkinColor;
+    }
+  }
+  /* 设置输入框是否显示清除按钮 */
+  .clear_icon {
+    display: none;
+    @include centerY();
+    @include wh(35px, 35px);
+    right: 4px;
+  }
+  .show_clear_icon {
+    &::-ms-clear {
+      display: none;
+    }
+    &:valid + .clear_icon {
+      display: inline-block;
+    }
+  }
+}
+
+/* 更改模拟键盘的样式 px不能转为rem 放在app.vue里面去了*/
+ /* .carnumboard{ 
+  #inputboxWrapper {
+    padding-top: 80px;
+    background-color: #fff;
+    background-image: linear-gradient(#fff, #fff);
+  }
+  #keyboardWrapper .keyboard-row:not(:first-child) .keyboard-item {
+    @include sc(28px, #2e2e2e);
+    height: 80px;
+  }
+  #inputboxWrapper .container-info {
+    @include sc(28px, #999);
+  }
+  #inputboxWrapper .container-input {
+    margin-top: 30px;
+    height: auto;
+  }
+
+  #inputboxWrapper .container-input span {
+    height: 88px;
+    line-height: 88px;
+    @include sc(42px, #444);
+  }
+  #inputboxWrapper .container-input span.focus {
+    border-color: $citySkinColor;
+  }
+  #inputboxWrapper .container-input span.focus + span {
+    border-left-color: $citySkinColor;
+  }
+  #inputboxWrapper .container-save-button {
+    margin-top: 80px;
+    height: 88px;
+  }
+  #inputboxWrapper .container-save-button .btnbind {
+    line-height: 88px;
+    background-color: $cityUnableOperateClr;
+    letter-spacing: 5px;
+    @include sc(36px, #fff);
+  }
+  #inputboxWrapper .container-save-button .btnbind.active {
+    background-color: $citySkinColor;
+  }
+
+  #keyboardWrapper .keyboard-row:first-child span.keyboard-item {
+    color: $citySkinColor;
+  }
+  #inputboxWrapper .container-switch-button {
+    @include sc(30px, #666);
+    line-height: 60px;
+    margin-top: 50px;
+  }
+  #inputboxWrapper .container-switch-button::before {
+    @include wh(60px, 60px);
+  }
+  .bar_bindcarnum {
+    display: none;
+  }
+  #inputboxWrapper .container-input span:last-child.focus {
+    border-right-color: $citySkinColor;
+  }
+}   */
