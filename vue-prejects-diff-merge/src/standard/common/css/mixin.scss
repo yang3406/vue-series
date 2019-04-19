@@ -16,7 +16,8 @@ $footerTabHeight:100px;
 
 /* 设置页面里底部的高度 */
 @mixin setFooterBottom($h:$footerTabHeight){
-  margin-bottom: $h + 15px;
+ /*  margin-bottom: $h + 15px; */ //ios不兼容
+ padding-bottom: $h + 15px;
 }
 
 /* 地图label距离顶部高度 */

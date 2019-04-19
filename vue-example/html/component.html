@@ -30,6 +30,14 @@
     <h1>用.sync绑定值变化</h1>
     <auto-change v-bind:title.sync="title"></auto-change>
     我的父组件的值{{title}}
+
+    <h1>深入了解slot 布局</h1>
+    <layout>
+      <!-- 必须用tempalte 任何没有被包裹在带有 v-slot 的 <template> 中的内容都会被视为默认插槽的内容。 -->
+      <template v-slot:header>i am header</template>
+      <template v-slot:main>i am main</template>
+      <template v-slot:default="cVal">i am pfoot 绑定一个值{{cVal.context}}</template>
+    </layout>
   </div>
 </body>
 <script src="../js/vue.js"></script>
@@ -52,6 +60,18 @@
         this.title += "1";
       }
     }
+  })
+
+  Vue.component('layout', {
+    data: function () {
+      return {
+        cVal: {
+          context: 'yjs'
+        },
+        kill: 'nobody'
+      }
+    },
+    template: '<div><div>i am head {{kill}}<slot name="haader"></slot></div><div class="main">i am main <slot name="main"></slot></div><footer class="footer">i am cfooter <slot ></slot></footer></div>',
   })
 
   let vm = new Vue({
