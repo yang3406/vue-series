@@ -1,0 +1,4 @@
+/* 这是注入到全局的scss 如果直接给选择器给样式px不能转为rem 用scss中的混入 在单个页面中引入 就可以生效*/
+@import './reset.scss'; /* 样式重置 */
+@import './mixin.scss'; /* 混入样式 */
+@import './commmon.scss'; /* 页面皮肤切换 和共有样式 */

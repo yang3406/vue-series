@@ -1,0 +1,50 @@
+/* -------------------start  共有样式------------- */
+.ec_btn_model_submit{
+  background-color: $citySkinColor;
+  height: 100px;
+  line-height: 100px;
+  @include sc(36px, $citySkinColor);
+  margin: 0 auto;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* 模拟提交按钮 不满足条件的 */
+.ec_btn_model_gray_submit{
+  @extend .ec_btn_model_submit;
+  background-color: $cityUnableOperateClr;
+}
+
+/* 输入框 有输入值时 删除图标 */
+.ec_input_icon_delete_container {
+  position: relative;
+  @include placeholder(30px, #999);
+  input {
+    padding: 10px 2px;
+    border-bottom-color: #ddd;
+    border-bottom-width: 1px; /*no*/
+    border-bottom-style: solid;
+    width: 100%;
+    &:active,
+    &:focus {
+      @include inputcaret($citySkinColor);
+      border-bottom-color: $citySkinColor;
+    }
+  }
+  /* 设置输入框是否显示清除按钮 */
+  .clear_icon {
+    display: none;
+    @include centerY();
+    @include wh(35px, 35px);
+    right: 4px;
+  }
+  .show_clear_icon {
+    &::-ms-clear {
+      display: none;
+    }
+    &:valid + .clear_icon {
+      display: inline-block;
+    }
+  }
+}
+/* -------------------end  ------------- */

@@ -1,0 +1,157 @@
+/* 城市皮肤颜色 除看改这个还需要改foot.vue中的svg图片的颜色 */
+/* 包含按钮可操作 边框的颜色 */
+$citySkinColor:#508cee;
+/* 不满足条件的按钮的颜色 */
+$cityUnableOperateClr:#d0d3d4;
+/* 底部menu的高度 在有footer的时候 避免被遮住 显示不全*/
+$footerTabHeight:100px;
+
+/* -------------------start  混入------------- */
+
+/* 设置svg填充颜色 激活请传$citySkinColor: fillColor:填充色 $strokeColor:线条颜色*/
+@mixin SvgIconColor($fillColor:#c8c8c8,$strokeColor:#c8c8c8) {
+  fill:$fillColor;
+  stroke:$strokeColor;
+  @content;
+}
+
+/** 线性渐变
+*$direction为渐变方向 上到下180deg 下到上0deg 左到右90deg 右到左-90deg 
+*/
+@mixin linearGradient($color1:#fff,$color2:#ffffff,$direction:180deg) {
+  background: -webkit-linear-gradient($direction, $color1 $color2); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient($direction, $color1 $color2); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient($direction, $color1 $color2); /* Firefox 3.6 - 15 */
+  background: linear-gradient($direction, $color1, $color2); /* 标准的语法 */
+}
+
+/* 添加阴影 */
+@mixin boxShadow($h:2px,$v:2px,$blur:5px,$color:#333333){
+  -moz-box-shadow:$h $v $blur $color; 
+  -webkit-box-shadow:$h $v $blur $color; 
+  box-shadow:$h $v $blur $color; 
+}
+
+/* 背景图片和大小 */
+@mixin bis($url){
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* 设置圆角边框 */
+@mixin borderRadius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+/* 字体颜色 大小 */
+@mixin sc($size:16px,$color : #222222){
+  font-size: $size;
+  color: $color;
+}
+/* 设置input textarea placeholder的样式 */
+@mixin placeholder($size:30px,$color:#999){
+  ::-webkit-input-placeholder, { /* WebKit, Blink, Edge */
+    font-size: $size;
+    color:$color;
+    
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: $size;
+    color:$color;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: $size;
+    color:$color;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: $size;
+    color:$color;
+  }
+}
+/* 改变输入框 选中后 闪动光标颜色 */
+@mixin inputcaret($color:auto){
+  caret-color: $color;
+}
+
+/* 设置宽高 */
+@mixin wh($width :100%,$height: 100%){
+  width: $width;
+  height: $height;
+}
+
+
+/* 设置页面里底部的高度 */
+@mixin setFooterBottom($h:$footerTabHeight){
+ /*  margin-bottom: $h + 15px; */ //ios不兼容
+ padding-bottom: $h + 15px;
+}
+
+/* 地图label距离顶部高度 */
+@mixin setMapBottom($h:$footerTabHeight){
+  bottom: $h + 10px;
+}
+
+/* 全屏 */
+@mixin absCover($bgc:#fff) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto; 
+  background-color: $bgc;
+}
+
+@mixin fixCover($bgc:#fff) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $bgc;
+}
+/* 设置显示页面的背景颜色 */
+@mixin pageColor($color:#fff) {
+  background-color: $color;
+  min-height: 100%;
+}
+
+/* 绝对定位 */
+@mixin absoluteSite($top:0px,$left:0px){
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+/* 定位上下左右居中 */
+@mixin center(){
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+/* 定位上下居中 */
+@mixin centerY(){
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 定位左右居中 */
+@mixin centerX(){
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* flex布局 和 子元素 对齐方式 */
+@mixin flexcontent($type : space-between){
+  display: flex;
+  justify-content: $type;
+}
+/* -------------------end  ------------- */
