@@ -3,7 +3,7 @@
   <div class="dmeo">hello man </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {};
 </script>
 <style lang='scss' scoped>

@@ -1,8 +1,9 @@
 import * as types from './mutation-types';
 //import Storages from '@/standard/common/js/storages';
 import Storages from '../common/js/storages';
+import { Mutation, MutationTree } from 'vuex';
 
-export default {
+const mutations: MutationTree<any> = {
   [types.CHANGE_SHOWBAR](state: any, boolean: boolean) {
     state.isShowBar = boolean;
   },
@@ -22,3 +23,5 @@ export default {
     }
   }
 }
+
+export default mutations;

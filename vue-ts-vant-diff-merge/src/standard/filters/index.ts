@@ -2,13 +2,14 @@
  * @Author: yangjs 
  * @Date: 2019-04-18 15:24:54 
  * @Last Modified by: yangjs
- * @Last Modified time: 2019-04-18 17:53:40
+ * @Last Modified time: 2019-04-26 13:16:02
  */
-import { isNullorEmpty } from '@standard/common/js/util.js';
+import { isNullorEmpty } from '../common/js/util.js';
+
 /* 增加千分点 */
-let addComma = value => {
+let addComma = (value: number) => {
   let number = value;
-  if (isNullorEmpty(number) || Number.parseFloat(number) == 0) {
+  if (isNullorEmpty(number) || number == 0) {
     return "0.00";
   }
   var num = number + "";
@@ -37,4 +38,4 @@ let addComma = value => {
   }
 };
 
-export { addComma };
+export const globalFilters: any = { addComma }

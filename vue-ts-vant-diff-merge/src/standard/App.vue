@@ -10,10 +10,10 @@
   </div>
 </template>
 
-<script>
-import { mapState } from 'vuex';
-import ecFooterTab from '@standard/components/ec-footer';
-import ecSvgIcon from '@standard/components/ec-svg';
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import ecFooterTab from './components/ec-footer';
+import ecSvgIcon from './components/ec-svg';
 export default {
   name: 'app',
   data() {
@@ -26,9 +26,9 @@ export default {
     ecSvgIcon,
   },
   computed: {
-    ...mapState({
+    /*  ...mapState({
       isShowBar: state => state.isShowBar,
-    }),
+    }), */
   },
   created() {
     //前进

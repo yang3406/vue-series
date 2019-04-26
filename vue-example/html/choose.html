@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="yes" name="apple-touch-fullscreen">
+  <meta content="telephone=no,email=no" name="format-detection">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>开具发票</title>
+  <link type="text/css" href="choose.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="page-container">
+    <div class="others">
+      <span @click="showIllustrate = true">开票金额说明</span>
+      <span class="others-line"></span>
+      <span @click="goInvoiceRecord">开票历史</span>
+    </div>
+    <div class="list-wrap">
+      <ul class="m-record-list">
+        <li class="m-record-item" v-for="mItem in recordList">
+          <div class="month">{{ mItem.month }}</div>
+          <ul class="record-list">
+            <li class="record-item flex flex-middle" v-for="dItem in mItem.bills" :class="{'checked': dItem.checked}" @click="setSelectState(dItem)">
+              <div class="rc-checkbox"></div>
+              <div class="rc-center flex-1">
+                <div class="park-time">{{ dItem.time }}</div>
+                <div class="plotname">{{ dItem.plotname }}</div>
+              </div>
+              <div class="rc-right">
+                <div class="carnum">{{ dItem.carnum }}</div>
+                <div class="amount">{{ dItem.amount | formatPrice}}</div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="option-wrap flex">
+      <div class="check-info flex flex-middle flex-1">
+        <span class="check-all" :class="{'checked': isCheckAll}" @click="selectAll"></span>
+        <div class="info">
+          <div class="check-all-text" @click="selectAll">全选</div>
+          <div>已选：
+            <span class="color-yellow">{{ checkedRecords.length }}</span>&nbsp;条记录/
+            <span class="color-yellow">{{ totalAmount | formatPrice }}</span>元</div>
+        </div>
+      </div>
+      <div class="next-btn flex flex-middle flex-center" @click="goNext">下一步</div>
+    </div>
+
+    <div class="cus-modal illustrate-md" v-show="showIllustrate" @click="showIllustrate = false">
+      <div class="md-body" @click.stop>
+        <div class="md-header">开票金额说明</div>
+        <div class="md-content">
+          <ul>
+            <li>1、电子发票支持对30天内消费记录以及月卡缴费记录进行开具；</li>
+            <li>2、消费中包含的代金券消费不支持开具发票；</li>
+            <li>3、仅支持对线上支付订单进行开电子发票，线下缴费请向收费人员索取。</li>
+          </ul>
+        </div>
+        <div class="md-footer" @click="showIllustrate = false">知道了</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="choose.js"></script>
+
+</html>
