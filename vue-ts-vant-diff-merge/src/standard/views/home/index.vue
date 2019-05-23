@@ -3,8 +3,12 @@
   <div class="dmeo">hello man </div>
 </template>
 
-<script lang="ts">
-export default {};
+<script>
+export default {
+  data() {
+    return {};
+  },
+};
 </script>
 <style lang='scss' scoped>
 .dmeo {

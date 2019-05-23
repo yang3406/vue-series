@@ -109,7 +109,7 @@
       </svg>
       <span :class="$route.meta.footerActivedItem == 'nearby'? 'footer_active_item':''">附近</span>
     </section>
-    <section @click="_gotoAddress('/mine')" class="guide_item">
+    <section @click="_gotoAddress({path:'/mine'})" class="guide_item">
       <svg class="icon_style">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.meta.footerActivedItem == 'mine'? '#profileActive' : '#profile'"></use>
       </svg>
@@ -120,16 +120,14 @@
 
 <script lang="ts">
 /* import { mapState } from 'vuex'; */
-export default {
-  data() {
-    return {};
-  },
-  methods: {
-    _gotoAddress(path) {
-      this.$router.push(path);
-    },
-  },
-};
+import Vue from 'vue';
+import Component from 'vue-class-component';
+@Component({})
+export default class EcFooter extends Vue {
+  _gotoAddress(path: string): void {
+    this.$router.push(path);
+  }
+}
 </script>
 <style lang='scss' scoped>
 $activedColor: $citySkinColor;

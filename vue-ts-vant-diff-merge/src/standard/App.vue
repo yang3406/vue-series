@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <transition>
-      <navigation :name="transitionName">
-        <router-view></router-view>
-      </navigation>
+    <transition :name="transitionName">
+      <!-- <navigation :name="transitionName"> -->
+      <router-view></router-view>
+      <!-- </navigation> -->
     </transition>
     <ec-footer-tab v-show="isShowBar"></ec-footer-tab>
     <ec-svg-icon></ec-svg-icon>
@@ -11,45 +11,39 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import ecFooterTab from './components/ec-footer';
-import ecSvgIcon from './components/ec-svg';
-export default {
-  name: 'app',
-  data() {
-    return {
-      transitionName: '',
-    };
-  },
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import { State } from 'vuex-class';
+import ecFooterTab from './components/ec-footer.vue';
+import ecSvgIcon from './components/ec-svg.vue';
+@Component({
   components: {
     ecFooterTab,
     ecSvgIcon,
   },
-  computed: {
-    /*  ...mapState({
-      isShowBar: state => state.isShowBar,
-    }), */
-  },
-  created() {
+})
+export default class App extends Vue {
+  @State isShowBar: boolean;
+  transitionName: string = 'slide-right';
+  /*  created() {
     //前进
-    this.$navigation.on('forward', (to, from) => {
+    this.$navigation.on('forward', (to: object, from: object) => {
       console.log('forward');
       this.transitionName = 'slide-right';
     });
     //回退
-    this.$navigation.on('back', (to, from) => {
+    this.$navigation.on('back', (to: object, from: object) => {
       console.log('back');
       this.transitionName = 'slide-left';
     });
-  },
-};
+  } */
+}
 </script>
 
 <style >
 #app {
   width: 100%;
   height: 100%;
-  min-width: 1280px;
   overflow-y: hidden;
 }
 

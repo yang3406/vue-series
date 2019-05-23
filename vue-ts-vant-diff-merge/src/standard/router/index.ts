@@ -1,51 +1,63 @@
-import { Mutation } from 'vuex';
 import Vue from "vue";
 import Router from "vue-router";
-import store from '../store/index'
-import * as types from '../store/mutation-types';
+import store from '../store';
+import { CHANGE_SHOWLOGO, CHANGE_SHOWMENU } from '../store/mutation-types';
+import { Toast } from 'vant';
 
 Vue.use(Router);
 
 import { routes } from "./routes";
-import { Promise } from "core-js";
 
 const router = new Router({
-  mode: 'history', //去掉项目中的#
+  mode: 'history',
   routes,
+  /* 记录缓存位置 */
   scrollBehavior(to, from, savedPosition) {
-    //浏览器的自带返回的上个页面 保持原有位置
+    //浏览器自带的返回页面 回到原来地方
     if (savedPosition) {
       return savedPosition;
+    } else {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ x: 0, y: 0 });
+        }, 0);
+      });
     }
-    return new Promise((resolve: any) => {
-      setTimeout(() => {
-        resolve({ x: 0, y: 0 });
-      }, 0);
-    })
   }
 });
-//登录成功或者是进入登录页面
-if (store.getters.mebid)
-  router.beforeEach((to, from, next) => {
-    //设置title
-    to.meta.title ? document.title = to.meta.title : document.title = "";
 
-    //是否显示footer menu框
-    to.meta.showFooterBar ? store.commit(types.CHANGE_SHOWBAR, true) : store.commit(types.CHANGE_SHOWBAR, false);
+/* 全局路由钩子 */
+router.beforeEach((to, from, next) => {
+  Toast.clear();
 
-    //判断是否登录 和是否需要登录 避免进入用户 进入死循环 
-    if (!store.getters.getMebId && to.meta.auth) {
-      //避免进入用户 进入死循环
-      if (to.path.indexOf("/useraccount") != -1) {
-        next();
-      } else {
-        next('/useraccount/login');
-      }
+  //设置标题
+  document.title = to.meta.title ? to.meta.title : "";
+
+  //是否显示文字logo
+  to.meta.isShowLogo ? store.commit(CHANGE_SHOWLOGO, true) : store.commit(CHANGE_SHOWLOGO, false);
+  //是否显示底部menu
+  to.meta.isShowMenu ? store.commit(CHANGE_SHOWMENU, true) : store.commit(CHANGE_SHOWMENU, false);
+
+  //避免陷入死循环 进入登录注册页面
+  /* if (to.meta.startWith("/useraccount")) {
+    next();
+    return;
+  } */
+
+  console.log(store.getters.getMebId + "==mebid");
+
+  if (store.getters.getMebId) {
+    //已登录
+    next();
+  } else {
+    if (to.matched.some(m => m.meta.isAuth)) {
+      //未登录 且需要登录权限
+      next('/useraccount/login');
     } else {
       next();
     }
-  })
+  }
 
-
+});
 
 export default router;

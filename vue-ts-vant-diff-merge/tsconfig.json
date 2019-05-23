@@ -8,8 +8,10 @@
     "module": "es6",
     "moduleResolution": "node",
     "jsx": "preserve",
-    "allowJs": true,
     "baseUrl": ".",
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "strictPropertyInitialization": false, //解决Property 'xx' has no initializer and in not definitely assigned in constructor
     /*  "paths": {
       "@": ["./src"],
       "@standard": ["./src/standard"],
