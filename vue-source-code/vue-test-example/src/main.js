@@ -15,10 +15,11 @@ Vue.config.productionTip = false
 }) */
 
 /* new Vue({
-  router,
+  router, 
 }).$mount("#app"); */
 
 new Vue({
+  el: '#app',
   router,
   render: h => h('div', "<h1>this is an error</h1>")
-}) 
+})  

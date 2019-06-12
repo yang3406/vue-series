@@ -9,7 +9,7 @@
     "xinjiangdist": "node build/build.js src=xinjiang",
     "beijing": "node build/dev-server.js src=beijing",
     "beijingdist": "node build/build.js src=beijing",
-    "dev": "node build/dev-server.js src=standard",
+    "dev": "set NODE_ENV=development && node build/dev-server.js src=standard",
     "devlist": "node build/build.js src=standard",
     "dll": "node build/build-dll.js"
   },
