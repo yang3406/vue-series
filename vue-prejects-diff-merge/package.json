@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "@types/node": "^9.4.7",
-    "ajv": "^6.5.5",
+    "ajv": "^6.12.3",
     "axios": "^0.18.0",
     "fastclick": "^1.0.6",
     "lib-flexible": "^0.3.2",
